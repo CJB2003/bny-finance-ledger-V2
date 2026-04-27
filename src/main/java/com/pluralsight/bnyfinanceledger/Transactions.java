@@ -2,22 +2,34 @@ package com.pluralsight.bnyfinanceledger;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Transactions {
 
+    //private fields for transactions
     private LocalDate date;
     private LocalTime time;
     private String description;
     private String vendor;
-    private String name;
+    private double amount;
 
-    public Transactions(LocalDate date, LocalTime time, String description, String vendor, String name) {
+    //constructor for transactions
+
+
+    public Transactions(LocalDate date, LocalTime time, String description, String vendor, double amount) {
         this.date = date;
         this.time = time;
         this.description = description;
         this.vendor = vendor;
-        this.name = name;
+        this.amount = amount;
     }
+    public String toFile() {
+        DateTimeFormatter dateTF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter timeTF = DateTimeFormatter.ofPattern("HH:mm:ss");
+        return String.format("%s|%s|%s|%s|%.2f", dateTF, timeTF, description, vendor, amount);
+    }
+
+    //getters and setters for transactions
 
     public LocalDate getDate() {
         return date;
@@ -51,11 +63,11 @@ public class Transactions {
         this.vendor = vendor;
     }
 
-    public String getName() {
-        return name;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }
