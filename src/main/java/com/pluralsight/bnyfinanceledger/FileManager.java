@@ -1,20 +1,29 @@
 package com.pluralsight.bnyfinanceledger;
-
-import com.pluralsight.bnyfinanceledger.Transactions;
-
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
 public class FileManager {
+    //creating a shortcut so i dont have to type the pathname out
+    static File file = new File("src/main/resources/transactions.csv");
 
     //method for writing to file
     public static void writeToFile(Transactions transaction) {
 
+
         try {
+            //empytFile is true if transaction file is empty otherwise it will be false
+            //using this to add header to file if file is empty
+            boolean emptyFile = file.length() == 0;
+
             //Buffered writer with file writer
-            BufferedWriter bWriter = new BufferedWriter(new FileWriter("src/main/resources/transactions.csv", true));
+            BufferedWriter bWriter = new BufferedWriter(new FileWriter(file, true));
+
+            //writes the header into the file if the file is empty
+            if (emptyFile) {
+                bWriter.write("Date|Time|Description|Vendor|Amount\n");
+            }
 
             //writes the information in format from the method toFile() in transaction class
             bWriter.write(transaction.toFile());
@@ -33,10 +42,17 @@ public class FileManager {
     public static List<Transactions> loadTransactions() {
         List<Transactions> list = new ArrayList<>();
 
-        try (BufferedReader bReader = new BufferedReader(new FileReader("src/main/resources/transactions.csv"))) {
+        try {
+            //buffered reader and file reader
+            BufferedReader bReader = new BufferedReader(new FileReader("src/main/resources/transactions.csv"));
 
+            //variable that will later contain the read method
             String line;
 
+            //skips the header I made
+            bReader.readLine();
+
+            //reads each line from the file while its not empty and splits by pipe
             while ((line = bReader.readLine()) != null) {
                 String[] parts = line.split("\\|");
 
@@ -50,6 +66,7 @@ public class FileManager {
 
                 list.add(t);
             }
+            bReader.close();
 
         } catch (IOException e) {
             System.out.println("No file found yet.");

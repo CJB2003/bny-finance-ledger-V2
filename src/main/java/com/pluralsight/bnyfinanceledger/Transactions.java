@@ -26,7 +26,7 @@ public class Transactions {
     public String toFile() {
         DateTimeFormatter dateTF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter timeTF = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return String.format("%s|%s|%s|%s|%.2f", dateTF, timeTF, description, vendor, amount);
+        return date.format(dateTF) + "|" + time.format(timeTF) + "|" + description + "|" + vendor + "|" + amount;
     }
 
     //getters and setters for transactions

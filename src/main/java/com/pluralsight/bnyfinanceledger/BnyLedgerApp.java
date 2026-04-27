@@ -1,6 +1,4 @@
 package com.pluralsight.bnyfinanceledger;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -50,8 +48,6 @@ public class BnyLedgerApp {
                     System.out.println("Invalid choice. Try again.");
 
             }
-
-
         }
     }
 
@@ -79,6 +75,7 @@ public class BnyLedgerApp {
             System.out.println("Your deposit was successful.");
         }
     }
+
     //method for making a payment
     public static void makePayment() {
         //similar
@@ -92,15 +89,17 @@ public class BnyLedgerApp {
         myScanner.nextLine();
 
         if (userAmount > 0) {
-            System.out.println("Error: The amount you entered is greater than zero!");
+            //forcing the input to be negative if user enters a positive number
+            userAmount *= -1;
         }
-        else {
-            Transactions payment = new Transactions(LocalDate.now(), LocalTime.now(), userDesc, userVendor, userAmount);
-
-        }
-
+        Transactions payment = new Transactions(LocalDate.now(), LocalTime.now(), userDesc, userVendor, userAmount);
+        FileManager.writeToFile(payment);
+        System.out.println("Your payment was successful!");
     }
+
     public static void Ledger() {
 
     }
 }
+
+
