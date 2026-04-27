@@ -8,6 +8,7 @@ import java.util.*;
 public class BnyLedgerApp {
     static Scanner myScanner = new Scanner(System.in);
 
+
     public static void main(String[] args) throws InterruptedException {
 
         //boolean variable set to true
@@ -17,7 +18,6 @@ public class BnyLedgerApp {
         while (appRunning) {
             //Welcomes the user to the account ledger experience at BNY Financial Corp.
             System.out.println(("Welcome to BNY Financial Corp."));
-            System.out.println(((32)));
             Thread.sleep(1000);
             System.out.println(
                     """
@@ -54,29 +54,10 @@ public class BnyLedgerApp {
 
         }
     }
-    //method for writing to file
-    private static void writeToFile(Transactions transaction) {
-
-        try {
-            //Buffered writer with file writer
-            BufferedWriter bWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
-
-            //writes the information in format from the method toFile() in transaction class
-            bWriter.write(transaction.toFile());
-
-            //goes to the next row for next transaction if needed
-            bWriter.newLine();
-
-            //closes the writer
-            bWriter.close();
-
-        } catch (Exception e) {
-            System.out.println("Error: Could not write to file.");
-        }
-    }
 
     //method for making a deposit
     public static void makeDeposit() {
+
         System.out.println("\nYou have selected to deposit.");
         System.out.print("Please enter a description: ");
         String userDesc = myScanner.nextLine();
@@ -88,19 +69,35 @@ public class BnyLedgerApp {
 
         //this ensures all deposits are greater than zero
         if (userAmount <= 0) {
-            System.out.println("Error: deposit amount is less than zero!");
+            System.out.println("Error: The deposit amount is less than zero!");
         } else {
             //create new object for deposits and saving to
             Transactions deposit = new Transactions(LocalDate.now(), LocalTime.now(), userDesc, userVendor, userAmount);
 
             //deposit information gets written to transaction.csv
-            writeToFile(deposit);
+            FileManager.writeToFile(deposit);
             System.out.println("Your deposit was successful.");
         }
     }
-
+    //method for making a payment
     public static void makePayment() {
+        //similar
+        System.out.println("\nYou have selected to make a payment.");
+        System.out.print("Please enter a description: ");
+        String userDesc = myScanner.nextLine();
+        System.out.print("Please enter the vendor name: ");
+        String userVendor = myScanner.nextLine();
+        System.out.print("Please enter the amount: ");
+        double userAmount = myScanner.nextDouble();
+        myScanner.nextLine();
 
+        if (userAmount > 0) {
+            System.out.println("Error: The amount you entered is greater than zero!");
+        }
+        else {
+            Transactions payment = new Transactions(LocalDate.now(), LocalTime.now(), userDesc, userVendor, userAmount);
+
+        }
 
     }
     public static void Ledger() {
