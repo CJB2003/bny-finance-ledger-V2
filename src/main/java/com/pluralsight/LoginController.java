@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -13,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.awt.*;
 import java.net.URL;
@@ -129,7 +131,30 @@ public class LoginController implements Initializable {
         accountCreationStage();
     }
 
-    public void accountCreationStage
+    public void accountCreationStage() {
+
+        try {
+
+            //loads bny-signup fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("bny-signup.fxml"));
+            Scene scene = new Scene(loader.load(), 600, 400);
+
+            Stage signUpStage = new Stage();
+            signUpStage.initStyle(StageStyle.UNDECORATED);
+            signUpStage.setScene(scene);
+
+            //closes the login page
+            Stage currentStage = (Stage) registerButton.getScene().getWindow();
+            currentStage.close();
+
+            //shows the sign-up screen
+            signUpStage.show();
+
+        } catch(Exception e) {
+            System.out.println("Could not load sign up screen.");
+            e.printStackTrace();
+        }
+    }
 
 }
 

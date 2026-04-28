@@ -10,21 +10,20 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pluralsight.LoginController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
             <AnchorPane prefHeight="400.0" prefWidth="223.0">
                <children>
-                  <ImageView fitHeight="400.0" fitWidth="252.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="loginBrandImageView" fitHeight="400.0" fitWidth="252.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Branding_Image.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="224.0" prefHeight="400.0" prefWidth="376.0" style="-fx-background-color: #717375;">
+            <AnchorPane layoutX="224.0" prefHeight="400.0" prefWidth="376.0" style="-fx-background-color: #8c8d8f;">
                <children>
                   <ImageView fx:id="lockImageView" fitHeight="72.0" fitWidth="129.0" layoutX="124.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -43,17 +42,17 @@
                      </font>
                   </Label>
                   <PasswordField fx:id="enterPasswordField" layoutX="138.0" layoutY="196.0" prefHeight="25.0" prefWidth="167.0" promptText="Password" />
-                  <Button fx:id="loginButton" layoutX="65.0" layoutY="267.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="246.0" style="-fx-background-color: #00243D; -fx-background-radius: 15;" text="Login" textFill="WHITE">
+                  <Button fx:id="loginButton" layoutX="65.0" layoutY="267.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="37.0" prefWidth="246.0" style="-fx-background-color: #00243D; -fx-background-radius: 15;" text="Login" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="registerButton" layoutX="66.0" layoutY="315.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="246.0" style="-fx-background-color: #00243D; -fx-background-radius: 15;" text="Create Account" textFill="WHITE">
+                  <Button fx:id="registerButton" layoutX="66.0" layoutY="319.0" mnemonicParsing="false" onAction="#onRegisterButtonClick" prefHeight="37.0" prefWidth="246.0" style="-fx-background-color: #00243D; -fx-background-radius: 15;" text="Create Account" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="exitButton" layoutX="304.0" layoutY="14.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="58.0" style="-fx-background-color: #00243D; -fx-background-radius: 10;" text="Exit" textFill="WHITE">
+                  <Button fx:id="exitButton" layoutX="304.0" layoutY="14.0" mnemonicParsing="false" onAction="#onExitButtonClick" prefHeight="37.0" prefWidth="58.0" style="-fx-background-color: #00243D; -fx-background-radius: 10;" text="Exit" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
