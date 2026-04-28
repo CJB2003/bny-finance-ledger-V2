@@ -244,10 +244,10 @@ public class BnyLedgerApp {
                     prevMonth(all());
                     break;
                 case 3:
-                    yearToDate();
+                    yearToDate(all());
                     break;
                 case 4:
-                    prevYear();
+                    prevYear(all());
                     break;
                 case 5:
                     return;
@@ -333,6 +333,7 @@ public class BnyLedgerApp {
         //Subtracts 1 from the current year to get previous year
         int year = LocalDate.now().getYear() - 1;
 
+        //Same for-each loop
         for (Transactions prevYear : list) {
             if (prevYear.getDate().getYear() == year) {
 
@@ -341,8 +342,24 @@ public class BnyLedgerApp {
         }
         displayAll(resultPrevYear);
     }
-    public static void searchByVendor() {
+    public static void searchByVendor(ArrayList<Transactions> list) {
 
+        ArrayList<Transactions> vendorResult = new ArrayList<>();
+
+        //Prompting user to enter a vendor name
+        System.out.println("Enter a vendor: ");
+        String userVendor = myScanner.nextLine();
+
+        /*
+        Ignoring case sensitivity. If the vendor value is the same as user vendor
+        add it to the array list
+        */
+        for (Transactions vendor : list) {
+            if (vendor.getVendor().equalsIgnoreCase(userVendor)) {
+                vendorResult.add(vendor);
+            }
+        }
+        displayAll(vendorResult);
     }
 }
 
