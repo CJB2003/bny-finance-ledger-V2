@@ -241,7 +241,7 @@ public class BnyLedgerApp {
                     monthToDate(all());
                     break;
                 case 2:
-                    prevMonth();
+                    prevMonth(all());
                     break;
                 case 3:
                     yearToDate();
@@ -258,13 +258,13 @@ public class BnyLedgerApp {
         }
 
     }
-    //Getting the current month
+    //Getting data from the current month
     public static void monthToDate(ArrayList<Transactions> list) {
         /*
         Creating new array list that will have values added
         if condition is met
          */
-        ArrayList<Transactions> result = new ArrayList<>();
+        ArrayList<Transactions> resultMonth = new ArrayList<>();
 
         /*
         Variables storing current month and year
@@ -278,19 +278,19 @@ public class BnyLedgerApp {
         Checks whether they are the same as current month and current year
         if both are true, it will that information to the new array
         */
-        for (Transactions t : list) {
-            if (t.getDate().getMonthValue() == currentMonth && t.getDate().getYear() == currentYear) {
+        for (Transactions monthDate : list) {
+            if (monthDate.getDate().getMonthValue() == currentMonth && monthDate.getDate().getYear() == currentYear) {
 
-                result.add(t);
+                resultMonth.add(monthDate);
             }
         }
         //reusing display method to format array list result
-        displayAll(result);
+        displayAll(resultMonth);
     }
-    //Getting the previous month
+    //Getting data from the previous month
     public static void prevMonth(ArrayList<Transactions> list) {
         //Creating new array list
-        ArrayList<Transactions> result = new ArrayList<>();
+        ArrayList<Transactions> resultPrevMonth = new ArrayList<>();
 
         /*
         Local date variable storing last month value
@@ -302,20 +302,44 @@ public class BnyLedgerApp {
         int year = lastMonth.getYear();
 
         //Same for-each from monthToDate method
-        for (Transactions t : list) {
-            if (t.getDate().getMonthValue() == month &&
-                    t.getDate().getYear() == year) {
+        for (Transactions prevMonth : list) {
+            if (prevMonth.getDate().getMonthValue() == month &&
+                    prevMonth.getDate().getYear() == year) {
 
-                result.add(t);
+                resultPrevMonth.add(prevMonth);
             }
         }
-        displayAll(result);
+        displayAll(resultPrevMonth);
     }
-    public static void yearToDate() {
+    //Gets data from current year, same concept as monthToDate
+    public static void yearToDate(ArrayList<Transactions> list) {
+        ArrayList<Transactions> resultYear = new ArrayList<>();
 
+        //Only difference for year is that you don't need the month
+        int year = LocalDate.now().getYear();
+
+        for (Transactions yearDate : list) {
+            if (yearDate.getDate().getYear() == year) {
+
+                resultYear.add(yearDate);
+            }
+        }
+        displayAll(resultYear);
     }
-    public static void prevYear() {
+    //Gets the data from previous year
+    public static void prevYear(ArrayList<Transactions> list) {
+        ArrayList<Transactions> resultPrevYear = new ArrayList<>();
 
+        //Subtracts 1 from the current year to get previous year
+        int year = LocalDate.now().getYear() - 1;
+
+        for (Transactions prevYear : list) {
+            if (prevYear.getDate().getYear() == year) {
+
+                resultPrevYear.add(prevYear);
+            }
+        }
+        displayAll(resultPrevYear);
     }
     public static void searchByVendor() {
 
