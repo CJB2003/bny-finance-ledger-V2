@@ -1,4 +1,4 @@
-package com.pluralsight.bnyfinanceledger;
+package com.pluralsight;
 
 public class TextFormatter {
     //Made them static and final so I can pass them through multiple methods
