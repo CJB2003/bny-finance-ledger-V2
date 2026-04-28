@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #00243D; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #00243D; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="800.0" prefWidth="280.0" style="-fx-background-radius: 25;">
          <children>
             <AnchorPane fx:id="sideAnchorPane" prefHeight="800.0" prefWidth="280.0" style="-fx-background-radius: 25;" />
          </children>
       </VBox>
-      <VBox prefHeight="800.0" prefWidth="1020.0" style="-fx-background-color: white;" />
+      <VBox prefHeight="800.0" prefWidth="1020.0" style="-fx-background-color: white;">
+         <children>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" />
+         </children></VBox>
    </children>
 </HBox>
