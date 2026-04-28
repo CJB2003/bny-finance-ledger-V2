@@ -1,5 +1,4 @@
 package com.pluralsight.bnyfinanceledger;
-import javafx.scene.text.Text;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -35,8 +34,10 @@ public class BnyLedgerApp {
             Thread.sleep(1000);
             System.out.println("Select one of the options above.\n");
             System.out.print("Selection: ");
-            //Storing user input in userChoice and keeps the input uppercase
-            //without using an ignore case
+            /*
+            Storing user input in userChoice and keeps the input uppercase
+            without using an ignore case
+            */
             String userChoice = myScanner.nextLine().toUpperCase();
             System.out.println();
 
@@ -110,8 +111,10 @@ public class BnyLedgerApp {
     public static ArrayList<Transactions> all() {
         //reads/loads the transactions from file manager class into the array list
         ArrayList<Transactions> all = FileManager.loadTransactions();
-        //In order to get newest to oldest, I need to reverse the order of transactions
-        //in the array
+        /*
+        In order to get newest to oldest, I need to reverse the order of transactions
+        in the array
+        */
         Collections.reverse(all);
         return all;
     }
@@ -180,8 +183,10 @@ public class BnyLedgerApp {
 
         //For-each loop
         for (Transactions t : list) {
-            //Important for displaying deposits, ensures that amount is always greater than 0
-            //Greater than 0 = deposits
+            /*
+            Important for displaying deposits, ensures that amount is always greater than 0
+            Greater than 0 = deposits
+            */
             if (t.getAmount() > 0) {
                 System.out.printf("%s | %s | %s | %s | %.2f\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
             }
@@ -194,8 +199,10 @@ public class BnyLedgerApp {
 
         //For-each loop
         for (Transactions t : list) {
-            //Ensures that amount is always a negative number
-            //Less than 0 is a payment
+            /*
+            Ensures that amount is always a negative number
+            Less than 0 is a payment
+            */
             if (t.getAmount() < 0) {
                 System.out.printf("%s | %s | %s | %s | %.2f\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
             }
@@ -251,19 +258,26 @@ public class BnyLedgerApp {
         }
 
     }
-    //
+    //Getting the current month
     public static void monthToDate(ArrayList<Transactions> list) {
-        //Creating new array list that will have values added
-        //if condition is met
+        /*
+        Creating new array list that will have values added
+        if condition is met
+         */
         ArrayList<Transactions> result = new ArrayList<>();
 
-        //variables storing current month and year
+        /*
+        Variables storing current month and year
+        I want both current month and year in case there is input from different years
+        */
         int currentMonth = LocalDate.now().getMonthValue();
         int currentYear = LocalDate.now().getYear();
 
-        //for-each loop, gets the actual month and year values
-        //Checks whether they are the same as current month and current year
-        //if both are true, it will that information to the new array
+        /*
+        for-each loop, gets the actual month and year values
+        Checks whether they are the same as current month and current year
+        if both are true, it will that information to the new array
+        */
         for (Transactions t : list) {
             if (t.getDate().getMonthValue() == currentMonth && t.getDate().getYear() == currentYear) {
 
@@ -273,9 +287,29 @@ public class BnyLedgerApp {
         //reusing display method to format array list result
         displayAll(result);
     }
-    public static void prevMonth() {
+    //Getting the previous month
+    public static void prevMonth(ArrayList<Transactions> list) {
+        //Creating new array list
+        ArrayList<Transactions> result = new ArrayList<>();
 
+        /*
+        Local date variable storing last month value
+        Instead of using getMonthValue() - 1, I used minusMonths methods instead
+        Fewer bugs in the future
+         */
+        LocalDate lastMonth = LocalDate.now().minusMonths(1);
+        int month = lastMonth.getMonthValue();
+        int year = lastMonth.getYear();
 
+        //Same for-each from monthToDate method
+        for (Transactions t : list) {
+            if (t.getDate().getMonthValue() == month &&
+                    t.getDate().getYear() == year) {
+
+                result.add(t);
+            }
+        }
+        displayAll(result);
     }
     public static void yearToDate() {
 
