@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -61,6 +64,10 @@ public class LoginController implements Initializable {
             e.printStackTrace();
         }
     }
+    /*
+    Method that runs when login button is click
+    Makes sure that username and password aren't empty
+     */
     public void loginButtonOnAction(ActionEvent event) {
         if (userNameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false) {
             validateLogin();
@@ -71,6 +78,43 @@ public class LoginController implements Initializable {
     }
     public void validateLogin() {
 
+        //Create object connection
+        DatabaseConnection connection = new DatabaseConnection();
+        //Connecting to SQL
+        Connection connectDB = connection.getConnection();
+
+        //Checks if the connection actually worked
+        if (connectDB == null) {
+            loginMessageLabel.setTextFill(Color.RED);
+            loginMessageLabel.setText("Database connection failed.");
+            return;
+        }
+
+        //This is the SQL query string that grabs an ID number
+        String loginVerification = "SELECT count(1) FROM user_account WHERE username = '" + userNameTextField.getText().trim() + "' AND password = '" + enterPasswordField.getText().trim() + "'";
+
+        System.out.println("Executing Query: " + loginVerification);
+
+        try {
+
+            //Searches for info and storing answer
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(loginVerification);
+
+            //If queryResult count is greater than 1 than that user is in the database
+            while(queryResult.next()) {
+                if (queryResult.getInt(1) > 0) {
+
+                } else {
+                    loginMessageLabel.setTextFill(Color.RED);
+                    loginMessageLabel.setText("Invalid login. Please try again.");
+                }
+            }
+
+        } catch(Exception e) {
+            System.out.println("Could not validate login.");
+            e.printStackTrace();
+        }
     }
     //method for exiting the application
     public void onExitButtonClick(ActionEvent event) {
@@ -82,14 +126,10 @@ public class LoginController implements Initializable {
     }
     //method for when user clicks on create account button
     public void onRegisterButtonClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource())
-
-        } catch(Exception e) {
-            System.out.println("Could not load sign up screen.");
-        }
-
+        accountCreationStage();
     }
+
+    public void accountCreationStage
 
 }
 
