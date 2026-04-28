@@ -253,11 +253,28 @@ public class BnyLedgerApp {
     }
     //
     public static void monthToDate(ArrayList<Transactions> list) {
+        //Creating new array list that will have values added
+        //if condition is met
+        ArrayList<Transactions> result = new ArrayList<>();
+
         //variables storing current month and year
         int currentMonth = LocalDate.now().getMonthValue();
         int currentYear = LocalDate.now().getYear();
+
+        //for-each loop, gets the actual month and year values
+        //Checks whether they are the same as current month and current year
+        //if both are true, it will that information to the new array
+        for (Transactions t : list) {
+            if (t.getDate().getMonthValue() == currentMonth && t.getDate().getYear() == currentYear) {
+
+                result.add(t);
+            }
+        }
+        //reusing display method to format array list result
+        displayAll(result);
     }
     public static void prevMonth() {
+
 
     }
     public static void yearToDate() {
