@@ -1,11 +1,13 @@
 package com.pluralsight.bnyfinanceledger;
+import javafx.scene.text.Text;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
 public class BnyLedgerApp {
     static Scanner myScanner = new Scanner(System.in);
-
+    static TextFormatter formatter = new TextFormatter();
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -15,7 +17,12 @@ public class BnyLedgerApp {
         //while loop for the menu with multiple options
         while (appRunning) {
             //Welcomes the user to the account ledger experience at BNY Financial Corp.
-            System.out.println(("Welcome to BNY Financial Corp."));
+            System.out.println(
+            formatter.bold("""
+            ==============================
+            Welcome to BNY Financial Corp.
+            ==============================
+            """));
             Thread.sleep(1000);
             System.out.println(
                             """
@@ -31,6 +38,7 @@ public class BnyLedgerApp {
             //Storing user input in userChoice and keeps the input uppercase
             //without using an ignore case
             String userChoice = myScanner.nextLine().toUpperCase();
+            System.out.println();
 
             switch (userChoice) {
                 case "D":
@@ -101,12 +109,16 @@ public class BnyLedgerApp {
 
     //method for the ledger opener
     public static void ledger() throws InterruptedException {
-
         //similar to the home menu, just with different options
         boolean ledgerOpen = true;
 
         while(ledgerOpen) {
-            System.out.println("Bny ledger");
+            System.out.println(formatter.bold(
+            """
+             ==============
+            || Bny Ledger ||
+             ==============
+            """));
             Thread.sleep(1000);
             System.out.println(
                     """
@@ -121,8 +133,13 @@ public class BnyLedgerApp {
             System.out.println("Select one of the options above.\n");
             System.out.print("Selection: ");
             String command = myScanner.nextLine().toUpperCase();
+            System.out.println();
 
+            //reads/loads the transactions from file manager class into the array list
             ArrayList<Transactions> all = FileManager.loadTransactions();
+            //In order to get newest to oldest, I need to reverse the order of transactions
+            //in the array
+            Collections.reverse(all);
 
             switch(command) {
                 case "A":
@@ -137,8 +154,7 @@ public class BnyLedgerApp {
                     reports();
                     break;
                 case "H":
-                    home();
-                    break;
+                    return;
                 default:
                     System.out.println("Invalid Choice. Try again.\n");
             }
@@ -158,9 +174,6 @@ public class BnyLedgerApp {
 
     }
     public static void reports() {
-
-    }
-    public static void home() {
 
     }
 }
