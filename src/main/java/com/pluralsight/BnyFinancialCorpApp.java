@@ -9,6 +9,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class BnyFinancialCorpApp extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(BnyFinancialCorpApp.class.getResource("bny-login.fxml"));

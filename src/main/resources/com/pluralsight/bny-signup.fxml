@@ -10,11 +10,11 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="600.0" style="-fx-background-color: #8c8d8f;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="600.0" style="-fx-background-color: #8c8d8f;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pluralsight.SignUpController">
    <children>
       <AnchorPane prefHeight="96.0" prefWidth="600.0" style="-fx-background-color: #00243D;">
          <children>
-            <ImageView fitHeight="100.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="horizontalLogoImageView" fitHeight="100.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@HorizontalBranding2.png" />
                </image>
@@ -57,12 +57,12 @@
          </font>
       </Label>
       <Label fx:id="confirmPasswordLabel" alignment="CENTER_RIGHT" layoutX="267.0" layoutY="295.0" prefHeight="19.0" prefWidth="181.0" textFill="#dd6464" />
-      <Button fx:id="signUpButton" layoutX="173.0" layoutY="355.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #00243D;" text="Sign Up" textFill="WHITE">
+      <Button fx:id="signUpButton" layoutX="173.0" layoutY="355.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #00243D; -fx-background-radius: 12;" text="Sign Up" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutX="173.0" layoutY="398.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #00243D;" text="Back" textFill="WHITE">
+      <Button fx:id="backButton" layoutX="173.0" layoutY="398.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #00243D; -fx-background-radius: 12;" text="Back" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>

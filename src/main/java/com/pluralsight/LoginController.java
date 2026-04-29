@@ -137,8 +137,9 @@ public class LoginController implements Initializable {
 
             //loads bny-signup fxml file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("bny-signup.fxml"));
-            Scene scene = new Scene(loader.load(), 600, 400);
+            Scene scene = new Scene(loader.load(), 600, 439);
 
+            //Loads it up borderless
             Stage signUpStage = new Stage();
             signUpStage.initStyle(StageStyle.UNDECORATED);
             signUpStage.setScene(scene);
