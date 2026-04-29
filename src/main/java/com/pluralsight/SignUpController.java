@@ -1,43 +1,130 @@
 package com.pluralsight;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-public class SignUpController {
+import java.awt.event.ActionEvent;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.util.Objects;
+import java.util.ResourceBundle;
+
+public class SignUpController implements Initializable {
 
     @FXML
     private Button backButton;
-
     @FXML
     private PasswordField confirmPasswordField;
-
     @FXML
     private Label confirmPasswordLabel;
-
     @FXML
     private TextField firstNameTextField;
-
     @FXML
     private TextField lastNameTextField;
-
     @FXML
     private PasswordField setPasswordField;
-
     @FXML
     private Button signUpButton;
-
     @FXML
     private Label signUpLabel;
-
     @FXML
     private TextField usernameTextField;
-
     @FXML
     private ImageView horizontalLogoImageView;
 
+    //Loads the images up to their respective variables before everything else
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        try {
+            Image horizontalBrand = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/pluralsight/HorizontalBranding2.png")));
+            horizontalLogoImageView.setImage(horizontalBrand);
+
+        } catch(Exception e) {
+            System.out.println("Could not load image.");
+            e.printStackTrace();
+        }
+    }
+    //Sign up button method
+    public void signUpButtonOnAction(ActionEvent event) {
+
+        if (setPasswordField.getText().equals(confirmPasswordField.getText())) {
+            userSignUp();
+            //Clears the text inside the password message label
+            confirmPasswordLabel.setText("");
+        } else {
+            //If passwords don't match each other, this prints out and sets the text color to red
+            confirmPasswordLabel.setTextFill(Color.RED);
+            confirmPasswordLabel.setText("Password does not match!");
+        }
+
+    }
+
+    //Method for back button, reopens the login screen
+    public void backButtonOnAction(ActionEvent event) {
+
+        try {
+            //loads the login screen when backButton is pressed, and closes the sign-up screen
+            FXMLLoader fxmlLoader = new FXMLLoader(LaunchBnyApp.class.getResource("bny-login.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+
+            Stage loginStage = new Stage();
+            loginStage.initStyle(StageStyle.UNDECORATED);
+            loginStage.setScene(scene);
+
+            Stage currentStage = (Stage) backButton.getScene().getWindow();
+            currentStage.close();
+
+            loginStage.show();
+
+        } catch(Exception e) {
+            System.out.println("Could not go back to login screen.");
+            e.printStackTrace();
+        }
+    }
+
+    public void userSignUp() {
+
+        //Connecting to the SQL database
+        DatabaseConnection connection = new DatabaseConnection();
+        Connection connectDB = connection.getConnection();
+
+        //assigning the user input into string variables
+        String firstName = firstNameTextField.getText();
+        String lastName = lastNameTextField.getText();
+        String username = usernameTextField.getText();
+        String password = setPasswordField.getText();
+
+        //Query for SQL database, concatenating the 4 values together with the insertField string
+        String insertFields = "INSERT INTO user_account(firstname, lastname, username, password) VALUES ('";
+        String insertValues = firstName + "','" + lastName + "','" + username + "','" + password + "')";
+        String insertToSignUp = insertFields + insertValues;
+
+        try {
+            //Writing the data to the database and executing the query
+            Statement statement = connectDB.createStatement();
+            statement.executeUpdate(insertToSignUp);
+            signUpLabel.setText("User Sign Up Successful!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
+
+
 
 

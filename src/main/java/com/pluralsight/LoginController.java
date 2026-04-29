@@ -16,7 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.*;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -28,56 +27,53 @@ public class LoginController implements Initializable {
 
     @FXML
     private PasswordField enterPasswordField;
-
     @FXML
     private Button exitButton;
-
     @FXML
     private ImageView lockImageView;
-
     @FXML
     private ImageView loginBrandImageView;
-
     @FXML
     private Button loginButton;
-
     @FXML
     private Button registerButton;
-
     @FXML
     private TextField userNameTextField;
-
     @FXML
     private Label loginMessageLabel;
-
 
     //initialize method to load images up, otherwise it will give me an error statement
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
+            //setting the images to their respective variables
             Image brandImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/pluralsight/Branding_Image.png")));
             loginBrandImageView.setImage(brandImage);
 
             Image lockImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/pluralsight/lock_icon.png")));
             lockImageView.setImage(lockImage);
+
         } catch(Exception e) {
             System.out.println("Could not load images.");
             e.printStackTrace();
         }
     }
     /*
-    Method that runs when login button is click
+    Method for login screen that runs when login button is clicked
     Makes sure that username and password aren't empty
      */
     public void loginButtonOnAction(ActionEvent event) {
         if (userNameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false) {
             validateLogin();
+            //clears the text inside the message label
+            loginMessageLabel.setText("");
         } else {
             loginMessageLabel.setTextFill(Color.RED);
             loginMessageLabel.setText("Please enter a username and password");
         }
     }
+    //method for validating logins
     public void validateLogin() {
 
         //Create object connection
@@ -103,10 +99,13 @@ public class LoginController implements Initializable {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(loginVerification);
 
-            //If queryResult count is greater than 1 than that user is in the database
+            /*
+            If queryResult count is greater than 1 than that user is in the database.
+            Will also open a new scene, the dashboard
+             */
             while(queryResult.next()) {
                 if (queryResult.getInt(1) > 0) {
-
+                    openDashboard();
                 } else {
                     loginMessageLabel.setTextFill(Color.RED);
                     loginMessageLabel.setText("Invalid login. Please try again.");
@@ -157,6 +156,32 @@ public class LoginController implements Initializable {
         }
     }
 
+    //Literally the same concept as the other loaders, optimized for the dashboard
+    public void openDashboard() {
+
+        try {
+
+            //loads ledger-dashboard fxml file up
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ledger-dashboard.fxml"));
+            Scene scene = new Scene(loader.load(), 600, 439);
+
+            //Loads up dashboard as borderless
+            Stage dashboardStage = new Stage();
+            dashboardStage.initStyle(StageStyle.UNDECORATED);
+            dashboardStage.setScene(scene);
+
+            //closes the login page
+            Stage currentStage = (Stage) loginButton.getScene().getWindow();
+            currentStage.close();
+
+            //shows the dashboard screen
+            dashboardStage.show();
+
+        } catch(Exception e) {
+            System.out.println("Could not load dashboard screen.");
+            e.printStackTrace();
+        }
+    }
 }
 
 

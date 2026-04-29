@@ -8,11 +8,11 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class BnyFinancialCorpApp extends Application {
+public class LaunchBnyApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(BnyFinancialCorpApp.class.getResource("bny-login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LaunchBnyApp.class.getResource("bny-login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
