@@ -1,6 +1,7 @@
 package controllers;
 
 import com.pluralsight.DatabaseConnection;
+import com.pluralsight.Model;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,6 +56,9 @@ public class LoginController implements Initializable {
             Image lockImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/lock_icon.png")));
             lockImageView.setImage(lockImage);
 
+            //when login button is clicked, it will take you to the menu, testing for now
+            loginButton.setOnAction(event -> Model.getInstance().getViewSwap().showLedgerMenu());
+
         } catch(Exception e) {
             System.out.println("Could not load images.");
             e.printStackTrace();
@@ -106,7 +110,7 @@ public class LoginController implements Initializable {
              */
             while(queryResult.next()) {
                 if (queryResult.getInt(1) > 0) {
-                    openDashboard();
+
                 } else {
                     loginMessageLabel.setTextFill(Color.RED);
                     loginMessageLabel.setText("Invalid login. Please try again.");
@@ -153,33 +157,6 @@ public class LoginController implements Initializable {
 
         } catch(Exception e) {
             System.out.println("Could not load sign up screen.");
-            e.printStackTrace();
-        }
-    }
-
-    //Literally the same concept as the other loaders, optimized for the dashboard
-    public void openDashboard() {
-
-        try {
-
-            //loads ledger-dashboard fxml file up
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ledger-dashboard.fxml"));
-            Scene scene = new Scene(loader.load(), 600, 439);
-
-            //Loads up dashboard as borderless
-            Stage dashboardStage = new Stage();
-            dashboardStage.initStyle(StageStyle.UNDECORATED);
-            dashboardStage.setScene(scene);
-
-            //closes the login page
-            Stage currentStage = (Stage) loginButton.getScene().getWindow();
-            currentStage.close();
-
-            //shows the dashboard screen
-            dashboardStage.show();
-
-        } catch(Exception e) {
-            System.out.println("Could not load dashboard screen.");
             e.printStackTrace();
         }
     }
