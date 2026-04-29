@@ -9,4 +9,6 @@ module com.pluralsight {
 
     opens com.pluralsight to javafx.fxml;
     exports com.pluralsight;
+    exports controllers;
+    opens controllers to javafx.fxml;
 }

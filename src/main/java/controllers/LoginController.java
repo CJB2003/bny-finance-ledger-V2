@@ -1,5 +1,6 @@
-package com.pluralsight;
+package controllers;
 
+import com.pluralsight.DatabaseConnection;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,10 +49,10 @@ public class LoginController implements Initializable {
 
         try {
             //setting the images to their respective variables
-            Image brandImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/pluralsight/Branding_Image.png")));
+            Image brandImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/Branding_Image.png")));
             loginBrandImageView.setImage(brandImage);
 
-            Image lockImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/pluralsight/lock_icon.png")));
+            Image lockImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/lock_icon.png")));
             lockImageView.setImage(lockImage);
 
         } catch(Exception e) {
@@ -135,7 +136,7 @@ public class LoginController implements Initializable {
         try {
 
             //loads bny-signup fxml file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("bny-signup.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/bny-signup.fxml"));
             Scene scene = new Scene(loader.load(), 600, 439);
 
             //Loads it up borderless
@@ -162,7 +163,7 @@ public class LoginController implements Initializable {
         try {
 
             //loads ledger-dashboard fxml file up
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ledger-dashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ledger-dashboard.fxml"));
             Scene scene = new Scene(loader.load(), 600, 439);
 
             //Loads up dashboard as borderless

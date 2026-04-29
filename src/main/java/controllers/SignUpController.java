@@ -1,5 +1,7 @@
-package com.pluralsight;
+package controllers;
 
+import com.pluralsight.DatabaseConnection;
+import com.pluralsight.LaunchBnyApp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,8 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.event.ActionEvent;
 
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -44,11 +46,12 @@ public class SignUpController implements Initializable {
     @FXML
     private ImageView horizontalLogoImageView;
 
+    @Override
     //Loads the images up to their respective variables before everything else
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
-            Image horizontalBrand = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/pluralsight/HorizontalBranding2.png")));
+            Image horizontalBrand = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/HorizontalBranding2.png")));
             horizontalLogoImageView.setImage(horizontalBrand);
 
         } catch(Exception e) {
@@ -76,7 +79,7 @@ public class SignUpController implements Initializable {
 
         try {
             //loads the login screen when backButton is pressed, and closes the sign-up screen
-            FXMLLoader fxmlLoader = new FXMLLoader(LaunchBnyApp.class.getResource("bny-login.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(LaunchBnyApp.class.getResource("/fxml/bny-login.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
 
             Stage loginStage = new Stage();
