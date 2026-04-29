@@ -1,4 +1,4 @@
-module com.pluralsight.bnyfinanceledger {
+module com.pluralsight {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
