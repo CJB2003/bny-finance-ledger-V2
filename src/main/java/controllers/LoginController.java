@@ -56,9 +56,6 @@ public class LoginController implements Initializable {
             Image lockImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/lock_icon.png")));
             lockImageView.setImage(lockImage);
 
-            //when login button is clicked, it will take you to the menu, testing for now
-            loginButton.setOnAction(event -> Model.getInstance().getViewSwap().showLedgerMenu());
-
         } catch(Exception e) {
             System.out.println("Could not load images.");
             e.printStackTrace();
@@ -110,6 +107,10 @@ public class LoginController implements Initializable {
              */
             while(queryResult.next()) {
                 if (queryResult.getInt(1) > 0) {
+                    //Closes login window and opens up ledger menu
+                    Stage currentStage = (Stage) loginButton.getScene().getWindow();
+                    currentStage.close();
+                    Model.getInstance().getViewSwap().showLedgerMenu();
 
                 } else {
                     loginMessageLabel.setTextFill(Color.RED);

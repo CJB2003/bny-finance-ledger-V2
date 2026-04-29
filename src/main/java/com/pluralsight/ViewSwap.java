@@ -38,7 +38,7 @@ public class ViewSwap {
 
     //loading up the ledger menu
     public void showLedgerMenu() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/client-side"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/client-side.fxml"));
         ClientSideController clientSideController = new ClientSideController();
         loader.setController(clientSideController);
         createStage(loader);
