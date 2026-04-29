@@ -68,8 +68,6 @@ public class LoginController implements Initializable {
     public void loginButtonOnAction(ActionEvent event) {
         if (userNameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false) {
             validateLogin();
-            //clears the text inside the message label
-            loginMessageLabel.setText("");
         } else {
             loginMessageLabel.setTextFill(Color.RED);
             loginMessageLabel.setText("Please enter a username and password");
@@ -107,6 +105,8 @@ public class LoginController implements Initializable {
              */
             while(queryResult.next()) {
                 if (queryResult.getInt(1) > 0) {
+                    //clears the text inside the message label, move to here because it was clearing after EVERY login attempt
+                    loginMessageLabel.setText("");
                     //Closes login window and opens up ledger menu
                     Stage currentStage = (Stage) loginButton.getScene().getWindow();
                     currentStage.close();

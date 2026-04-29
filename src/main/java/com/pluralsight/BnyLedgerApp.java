@@ -113,9 +113,10 @@ public class BnyLedgerApp {
         ArrayList<Transactions> all = FileManager.loadTransactions();
         /*
         In order to get newest to oldest, I need to reverse the order of transactions
-        in the array
+        in the array. Changed to where it's based on the date of the transaction
         */
-        Collections.reverse(all);
+        all.sort(Comparator.comparing(Transactions::getDate).reversed());
+
         return all;
     }
 
@@ -161,7 +162,8 @@ public class BnyLedgerApp {
                     reports();
                     break;
                 case "H":
-                    return;
+                    ledgerOpen = false;
+                    break;
                 default:
                     System.out.println("Invalid Choice. Try again.\n");
             }
@@ -174,7 +176,7 @@ public class BnyLedgerApp {
 
         //For-each loop that prints out in a formatted way
         for (Transactions t : list) {
-            System.out.printf("%s | %s | %s | %s | %.2f\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+            System.out.printf("%s | %s | %s | %s | %s\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), formatter.colorForAmount(t.getAmount()));
         }
     }
     //Displays all deposits
@@ -188,7 +190,7 @@ public class BnyLedgerApp {
             Greater than 0 = deposits
             */
             if (t.getAmount() > 0) {
-                System.out.printf("%s | %s | %s | %s | %.2f\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+                System.out.printf("%s | %s | %s | %s | %s\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), formatter.colorForAmount(t.getAmount()));
             }
         }
 
@@ -204,13 +206,13 @@ public class BnyLedgerApp {
             Less than 0 is a payment
             */
             if (t.getAmount() < 0) {
-                System.out.printf("%s | %s | %s | %s | %.2f\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+                System.out.printf("%s | %s | %s | %s | %s\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), formatter.colorForAmount(t.getAmount()));
             }
         }
 
     }
     //Reports menu
-    public static void reports() {
+    public static void reports() throws InterruptedException {
 
 
         boolean reportOpen = true;
@@ -234,9 +236,13 @@ public class BnyLedgerApp {
             System.out.println("Select a choice above.");
             System.out.print("Selection: ");
             int choice = myScanner.nextInt();
+            myScanner.nextLine();
 
             //Switch statement for choice
             switch(choice) {
+                case 0:
+                    reportOpen = false;
+                    break;
                 case 1:
                     monthToDate(all());
                     break;
@@ -250,7 +256,8 @@ public class BnyLedgerApp {
                     prevYear(all());
                     break;
                 case 5:
-                    return;
+                    searchByVendor(all());
+                    break;
                 default:
                     System.out.println("Invalid choice. Try Again.\n");
             }

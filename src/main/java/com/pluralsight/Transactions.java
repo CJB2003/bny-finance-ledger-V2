@@ -21,6 +21,7 @@ public class Transactions {
         this.vendor = vendor;
         this.amount = amount;
     }
+    //Formatter when writing to csv file
     public String toFile() {
         DateTimeFormatter dateTF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter timeTF = DateTimeFormatter.ofPattern("HH:mm:ss");
