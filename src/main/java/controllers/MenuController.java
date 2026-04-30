@@ -1,5 +1,6 @@
 package controllers;
 
+import com.pluralsight.Model;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -20,8 +21,20 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        addListener();
     }
 
+    //Action events that will swap between screens depending on what is pressed
+    private void addListener() {
+        dashboardButton.setOnAction(event -> onDashboard());
+        transactionsButton.setOnAction(event -> onTransactions());
+    }
+
+    private void onDashboard() {
+        Model.getInstance().getViewSwap().getUserSelectedMenuItem().set("Dashboard");
+    }
+    private void onTransactions() {
+        Model.getInstance().getViewSwap().getUserSelectedMenuItem().set("Transactions");
+    }
 }
 

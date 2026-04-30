@@ -1,6 +1,8 @@
 package com.pluralsight;
 
-import controllers.ClientSideController;
+import controllers.UserSideController;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,11 +13,24 @@ import javafx.stage.StageStyle;
 public class ViewSwap {
 
     @FXML
+    private final StringProperty userSelectedMenuItem;
+    @FXML
     private AnchorPane dashboardView;
+    @FXML
+    private AnchorPane transactionsView;
+
 
     public ViewSwap() {
 
+        this.userSelectedMenuItem = new SimpleStringProperty("");
+
     }
+
+    //Return the property itself, not just the string
+    public StringProperty getUserSelectedMenuItem() {
+        return userSelectedMenuItem;
+    }
+
     //Loads up the dashboard for users to see
     public AnchorPane getDashboardView() {
         //Checks if dashboard is empty
@@ -31,6 +46,22 @@ public class ViewSwap {
         }
         return dashboardView;
     }
+
+    //Same as the dashboardView method, loads up transaction view
+    public AnchorPane getTransactionsView() {
+        if (transactionsView == null) {
+            try {
+                transactionsView = new FXMLLoader(getClass().getResource("/fxml/Transactions.fxml")).load();
+
+            } catch(Exception e) {
+                System.out.println("Could not load transactions screen.");
+                e.printStackTrace();
+
+            }
+        }
+        return transactionsView;
+    }
+
     public void showLoginView() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/bny-login.fxml"));
         createStage(loader);
@@ -39,8 +70,8 @@ public class ViewSwap {
     //loading up the ledger menu
     public void showLedgerMenu() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/client-side.fxml"));
-        ClientSideController clientSideController = new ClientSideController();
-        loader.setController(clientSideController);
+        UserSideController userSideController = new UserSideController();
+        loader.setController(userSideController);
         createStage(loader);
     }
 
