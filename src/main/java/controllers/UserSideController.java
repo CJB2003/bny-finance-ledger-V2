@@ -1,6 +1,6 @@
 package controllers;
 
-import com.pluralsight.Model;
+import launch.Model;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
 
@@ -12,7 +12,7 @@ public class UserSideController implements Initializable {
     public BorderPane userParent;
 
     /*
-    Everytime the screen changes, listener gets a new value and allows me to set the center to some other view
+    Everytime the screen changes, listener gets a new value allowing the app to set the center to some other view
     Changes through the MenuController class (the buttons)
      */
     @Override

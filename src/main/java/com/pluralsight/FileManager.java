@@ -12,8 +12,10 @@ public class FileManager {
     public static void writeToFile(Transactions transaction) {
 
         try {
-            //emptyFile is true if transaction file is empty otherwise it will be false
-            //using this to add header to file if file is empty
+            /*
+            EmptyFile is true if transaction file is empty otherwise it will be false
+            Using this to add header to file if file is empty
+             */
             boolean emptyFile = file.length() == 0;
 
             //Buffered writer with file writer

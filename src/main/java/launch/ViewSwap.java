@@ -1,4 +1,4 @@
-package com.pluralsight;
+package launch;
 
 import controllers.UserSideController;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,6 +18,8 @@ public class ViewSwap {
     private AnchorPane dashboardView;
     @FXML
     private AnchorPane transactionsView;
+    @FXML
+    private AnchorPane ledgerView;
 
 
     public ViewSwap() {

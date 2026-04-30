@@ -1,4 +1,4 @@
-package com.pluralsight;
+package launch;
 
 
 public class Model {

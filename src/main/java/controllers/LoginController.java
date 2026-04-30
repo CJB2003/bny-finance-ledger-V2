@@ -1,7 +1,7 @@
 package controllers;
 
-import com.pluralsight.DatabaseConnection;
-import com.pluralsight.Model;
+import launch.DatabaseConnection;
+import launch.Model;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

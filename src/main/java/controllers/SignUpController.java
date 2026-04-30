@@ -1,7 +1,7 @@
 package controllers;
 
-import com.pluralsight.DatabaseConnection;
-import com.pluralsight.LaunchBnyApp;
+import launch.DatabaseConnection;
+import launch.LaunchBnyApp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

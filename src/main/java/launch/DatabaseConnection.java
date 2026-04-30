@@ -1,4 +1,6 @@
-package com.pluralsight;
+package launch;
+
+import com.pluralsight.Transactions;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

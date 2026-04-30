@@ -11,4 +11,6 @@ module com.pluralsight {
     exports com.pluralsight;
     exports controllers;
     opens controllers to javafx.fxml;
+    exports launch;
+    opens launch to javafx.fxml;
 }
