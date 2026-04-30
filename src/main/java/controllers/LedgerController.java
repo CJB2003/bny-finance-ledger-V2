@@ -38,8 +38,6 @@ public class LedgerController implements Initializable {
     @FXML
     private Button reportsButton;
     @FXML
-    private Button homeButton;
-    @FXML
     private Label accountLabel;
 
     private ArrayList<Transactions> allT;
@@ -47,6 +45,12 @@ public class LedgerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setColumns();
+        /*
+        Assigning amountColumn to use the method colorAmountCell so the colors change
+        Renders for each row repeatedly
+         */
+        amountColumn.setCellFactory(col -> colorAmountCell());
+
         loadTable();
     }
 
@@ -64,17 +68,21 @@ public class LedgerController implements Initializable {
         amountColumn.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getAmount()));
     }
 
+    //method
     private TableCell<Transactions, Double> colorAmountCell() {
-        //creating new table cell class
+        //creating new table cell class instead of separate class
         return new TableCell<>() {
             @Override
             protected void updateItem(Double amount, boolean empty) {
-                //Ensures no bugs, calls parent class of updateItem
+                //Ensures no bugs, calls parent class of updateItem, a built-in method of javafx
                 super.updateItem(amount, empty);
 
                 //checks if cell is empty and will set text to null displaying nothing
                 if (empty || amount == null) {
                     setText(null);
+                } else {
+                    //Forgot to format the text properly for amount
+                    setText(String.format("%.2f", amount));
                     //Sets text to green or red depending on whether the amount if positive or negative
                     if (amount > 0) {
                         setStyle("-fx-text-fill: #0F6E56; -fx-font-weight: bold;");
@@ -91,12 +99,9 @@ public class LedgerController implements Initializable {
         DatabaseConnection db = new DatabaseConnection();
         allT = db.getTransactionsFromDB();
 
-        //Checking if transactions actually loaded up, if 0, means none loaded
-        System.out.println("Transactions loaded: " + allT.size());
-
         transactionTable.getItems().setAll(allT);
 
-        //waits until scene is fully rendered
+        //waits until scene is fully rendered, just wanting to check if my transaction table is actually loading, was getting bugs
         Platform.runLater(() -> {
             System.out.println("Table width: " + transactionTable.getWidth());
             System.out.println("Table height: " + transactionTable.getHeight());
@@ -139,9 +144,6 @@ public class LedgerController implements Initializable {
 
     public void onReports(ActionEvent event) {
         setActiveButton(reportsButton);
-    }
-
-    public void onHome(ActionEvent event) {
     }
 
     //This will highlight the button when the button is actively being used

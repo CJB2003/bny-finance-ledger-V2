@@ -1,6 +1,5 @@
 package controllers;
 
-import javafx.scene.layout.AnchorPane;
 import launch.Model;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
@@ -19,7 +18,7 @@ public class UserSideController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //Set dashboard here instead of in client-side, was clashing with my table in ledger
+        //Set dashboard here instead of in client-side, was clashing with my table in the ledger
         userParent.setCenter(Model.getInstance().getViewSwap().getDashboardView());
 
         Model.getInstance().getViewSwap().getUserSelectedMenuItem().addListener((observableValue, oldValue, newValue) -> {
