@@ -64,6 +64,18 @@ public class ViewSwap {
         return transactionsView;
     }
 
+    public AnchorPane getLedgerView() {
+        if (ledgerView == null) {
+            try {
+                ledgerView = new FXMLLoader(getClass().getResource("/fxml/bny-ledger.fxml")).load();
+
+            } catch(Exception e) {
+                System.out.println("Could not load ledger screen");
+                e.printStackTrace();
+            }
+        }
+    }
+
     //shows the login view
     public void showLoginView() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/bny-login.fxml"));

@@ -2,10 +2,11 @@ package launch;
 
 import com.pluralsight.Transactions;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class DatabaseConnection {
 
@@ -60,5 +61,33 @@ public class DatabaseConnection {
                 e.printStackTrace();
                 System.out.println("Could not save to database.");
         }
+    }
+
+    //array list method that gets transactions from SQL
+    public ArrayList<Transactions> getTransactionsFromDB() {
+
+        ArrayList<Transactions> getT = new ArrayList<>();
+        String query = "SELECT date, time, description, vendor, amount FROM transactions ORDER BY date DESC, time DESC";
+
+        try {
+            Connection connect = getConnection();
+            Statement statement = connect.createStatement();
+            ResultSet result = statement.executeQuery(query);
+
+            while (result.next()) {
+                LocalDate date = result.getDate("Date").toLocalDate();
+                LocalTime time = result.getTime("Time").toLocalTime();
+                String desc = result.getString("Description");
+                String vendor = result.getString("Vendor");
+                double amount = result.getDouble("Amount");
+
+                getT.add(new Transactions(date, time, desc, vendor, amount));
+            }
+
+        } catch(Exception e) {
+            System.out.println("Could not load transactions database.");
+            e.printStackTrace();
+        }
+        return getT;
     }
 }

@@ -28,6 +28,7 @@ public class MenuController implements Initializable {
     private void addListener() {
         dashboardButton.setOnAction(event -> onDashboard());
         transactionsButton.setOnAction(event -> onTransactions());
+        ledgerButton.setOnAction(event -> onLedger());
     }
 
     private void onDashboard() {
@@ -35,6 +36,9 @@ public class MenuController implements Initializable {
     }
     private void onTransactions() {
         Model.getInstance().getViewSwap().getUserSelectedMenuItem().set("Transactions");
+    }
+    private void onLedger() {
+        Model.getInstance().getViewSwap().getUserSelectedMenuItem().set("Ledger");
     }
 }
 

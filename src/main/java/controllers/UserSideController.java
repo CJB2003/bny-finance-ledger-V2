@@ -20,12 +20,15 @@ public class UserSideController implements Initializable {
         Model.getInstance().getViewSwap().getUserSelectedMenuItem().addListener((observableValue, oldValue, newValue) -> {
 
             /*
-            Switch statement, if transactions is selected, it will swap the view to transactions
+            Switch statement, checks what new value is selected, it will swap the that new view
             Otherwise, it will set the dashboard as the view by default
              */
             switch(newValue) {
                 case "Transactions":
                     userParent.setCenter(Model.getInstance().getViewSwap().getTransactionsView());
+                    break;
+                case "Ledger":
+                    userParent.setCenter(Model.getInstance().getViewSwap().getLedgerView());
                     break;
                 default:
                     userParent.setCenter(Model.getInstance().getViewSwap().getDashboardView());
