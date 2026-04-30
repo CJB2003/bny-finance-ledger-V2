@@ -37,7 +37,7 @@ public class ViewSwap {
         if (dashboardView == null) {
             //Gets the dashboard view from its respective fxml file
             try {
-                dashboardView = new FXMLLoader(getClass().getResource("/fxml/ledger-dashboard.fxml")).load();
+                dashboardView = new FXMLLoader(getClass().getResource("/fxml/bny-app-dashboard.fxml")).load();
 
             } catch(Exception e) {
                 System.out.println("Could not load dashboard.");
@@ -62,6 +62,7 @@ public class ViewSwap {
         return transactionsView;
     }
 
+    //shows the login view
     public void showLoginView() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/bny-login.fxml"));
         createStage(loader);

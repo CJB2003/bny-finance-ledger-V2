@@ -4,11 +4,11 @@
 
 <BorderPane fx:id="userParent" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <left>
-        <fx:include source="ledger-menu.fxml"/>
+        <fx:include source="bny-app-menu.fxml"/>
     </left>
 
     <center>
-        <fx:include source="ledger-dashboard.fxml"/>
+        <fx:include source="bny-app-dashboard.fxml"/>
     </center>
 
 </BorderPane>
