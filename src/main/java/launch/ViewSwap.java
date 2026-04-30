@@ -43,7 +43,6 @@ public class ViewSwap {
 
             } catch(Exception e) {
                 System.out.println("Could not load dashboard.");
-                e.printStackTrace();
             }
         }
         return dashboardView;
@@ -57,8 +56,6 @@ public class ViewSwap {
 
             } catch(Exception e) {
                 System.out.println("Could not load transactions screen.");
-                e.printStackTrace();
-
             }
         }
         return transactionsView;
@@ -72,7 +69,6 @@ public class ViewSwap {
 
             } catch(Exception e) {
                 System.out.println("Could not load ledger screen");
-                e.printStackTrace();
             }
         }
         return ledgerView;
@@ -98,11 +94,15 @@ public class ViewSwap {
         try {
             scene = new Scene(loader.load());
         } catch(Exception e) {
-            e.printStackTrace();
+            System.out.println("Could not create new scene.");
         }
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
+    }
+    //Trying to reset my ledger view
+    public void resetLedgerView() {
+        ledgerView = null;
     }
 }

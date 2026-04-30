@@ -58,7 +58,6 @@ public class LoginController implements Initializable {
 
         } catch(Exception e) {
             System.out.println("Could not load images.");
-            e.printStackTrace();
         }
     }
     /*
@@ -107,6 +106,15 @@ public class LoginController implements Initializable {
                 if (queryResult.getInt(1) > 0) {
                     //clears the text inside the message label, move to here because it was clearing after EVERY login attempt
                     loginMessageLabel.setText("");
+
+                    // Here, I'm getting the first name separately, whilst the user is logging in
+                    String nameQuery = "SELECT firstname FROM user_account WHERE username = '" + userNameTextField.getText().trim() + "'";
+                    Statement nameStatement = connectDB.createStatement();
+                    ResultSet nameResult = nameStatement.executeQuery(nameQuery);
+                    if (nameResult.next()) {
+                        Model.getInstance().setLoggedInFirstName(nameResult.getString("firstname"));
+                    }
+
                     //Closes login window and opens up ledger menu
                     Stage currentStage = (Stage) loginButton.getScene().getWindow();
                     currentStage.close();
@@ -120,7 +128,6 @@ public class LoginController implements Initializable {
 
         } catch(Exception e) {
             System.out.println("Could not validate login.");
-            e.printStackTrace();
         }
     }
     //method for exiting the application
@@ -158,7 +165,6 @@ public class LoginController implements Initializable {
 
         } catch(Exception e) {
             System.out.println("Could not load sign up screen.");
-            e.printStackTrace();
         }
     }
 }

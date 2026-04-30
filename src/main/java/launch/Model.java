@@ -4,6 +4,7 @@ package launch;
 public class Model {
     private static Model model;
     private final ViewSwap viewSwap;
+    private String loggedInFirstName;
 
     public Model() {
         this.viewSwap = new ViewSwap();
@@ -18,5 +19,13 @@ public class Model {
 
     public ViewSwap getViewSwap() {
         return viewSwap;
+    }
+
+    public String getLoggedInFirstName() {
+        return loggedInFirstName;
+    }
+
+    public void setLoggedInFirstName(String name) {
+        this.loggedInFirstName = name;
     }
 }

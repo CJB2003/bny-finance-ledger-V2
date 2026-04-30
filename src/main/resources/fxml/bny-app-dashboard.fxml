@@ -13,173 +13,153 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0"
-            prefWidth="850.0" style="-fx-background-color: #8c8d8f;" xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1">
-   <Label fx:id="loginDate1" layoutX="25.0" layoutY="42.0" prefHeight="27.0" prefWidth="152.0" text="Welcome, Chris"
-          textFill="#0f172a" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="28.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="850.0" style="-fx-background-color: #8c8d8f;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
+   <Label fx:id="welcomeUser" layoutX="25.0" layoutY="42.0" prefHeight="27.0" prefWidth="152.0" text="Welcome, Chris" textFill="#0f172a" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="28.0">
       <font>
-         <Font name="Calibri Bold" size="18.0"/>
+         <Font name="Calibri Bold" size="18.0" />
       </font>
    </Label>
-   <Label fx:id="loginDate" layoutX="684.0" layoutY="28.0" prefHeight="27.0" prefWidth="152.0" text="Today, 2026-04-28"
-          textFill="#0f172a" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="28.0">
+   <Label fx:id="loginDate" layoutX="684.0" layoutY="28.0" prefHeight="27.0" prefWidth="152.0" text="Today, 2026-04-28" textFill="#0f172a" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="28.0">
       <font>
-         <Font name="Calibri Bold" size="16.0"/>
+         <Font name="Calibri Bold" size="16.0" />
       </font>
    </Label>
-   <Text fill="#0f172a" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" AnchorPane.leftAnchor="25.0"
-         AnchorPane.topAnchor="90.0">
+   <Text fill="#0f172a" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="90.0">
       <font>
-         <Font name="Calibri Bold" size="18.0"/>
+         <Font name="Calibri Bold" size="18.0" />
       </font>
    </Text>
-   <Text fill="#0f172a" layoutX="809.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Summary"
-         AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="90.0">
+   <Text fill="#0f172a" layoutX="809.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Summary" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="90.0">
       <font>
-         <Font name="Calibri Bold" size="18.0"/>
+         <Font name="Calibri Bold" size="18.0" />
       </font>
    </Text>
-   <HBox alignment="CENTER_LEFT" layoutX="58.0" layoutY="126.0" prefHeight="180.0" prefWidth="600.0" spacing="20.0"
-         style="-fx-background-color: gray; -fx-background-radius: 20;" AnchorPane.leftAnchor="20.0"
-         AnchorPane.topAnchor="120.0">
-      <AnchorPane prefHeight="180.0" prefWidth="600.0"
-                  style="-fx-background-color: linear-gradient(to bottom, #003a63, #00243D); -fx-background-radius: 20;">
-         <Label fx:id="accountBalance" layoutX="14.0" layoutY="45.0" text="\$1,000.99" textFill="#f39c12"
-                AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="60.0">
+   <HBox alignment="CENTER_LEFT" layoutX="58.0" layoutY="126.0" prefHeight="180.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: gray; -fx-background-radius: 20;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="120.0">
+      <AnchorPane prefHeight="180.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #003a63, #00243D); -fx-background-radius: 20;">
+         <Label fx:id="accountBalance" layoutX="14.0" layoutY="45.0" text="\$1,000.99" textFill="#f39c12" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="60.0">
             <font>
-               <Font name="Inter 18pt Black" size="36.0"/>
+               <Font name="Inter 18pt Black" size="36.0" />
             </font>
          </Label>
-         <Label layoutX="14.0" layoutY="129.0" text="**** **** ****" textFill="#f39c12"
-                AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="30.0">
+         <Label layoutX="14.0" layoutY="129.0" text="**** **** ****" textFill="#f39c12" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="30.0">
             <font>
-               <Font size="20.0"/>
+               <Font size="20.0" />
             </font>
          </Label>
-         <Label fx:id="accountNum" layoutX="138.0" layoutY="127.0" text="5305" textFill="#f39c12"
-                AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="160.0">
+         <Label fx:id="accountNum" layoutX="138.0" layoutY="127.0" text="5305" textFill="#f39c12" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="160.0">
             <font>
-               <Font size="20.0"/>
+               <Font size="20.0" />
             </font>
          </Label>
-         <VBox layoutX="523.0" layoutY="78.0" prefHeight="100.0" prefWidth="59.0"
-               style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="45.0"/>
-         <Text fill="WHITE" layoutX="23.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0"
-               text="Account Balance" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="30.0"
-               AnchorPane.topAnchor="18.0">
+         <VBox layoutX="523.0" layoutY="78.0" prefHeight="100.0" prefWidth="59.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="45.0" />
+         <Text fill="WHITE" layoutX="23.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Balance" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="18.0">
             <font>
-               <Font size="20.0"/>
+               <Font size="20.0" />
             </font>
          </Text>
       </AnchorPane>
    </HBox>
-   <VBox layoutX="617.0" layoutY="159.0" prefHeight="180.0" prefWidth="210.0"
-         style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #F5F7F8; -fx-border-color: #CBD5E1;"
-         AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="120.0">
+   <VBox layoutX="617.0" layoutY="159.0" prefHeight="180.0" prefWidth="210.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #F5F7F8; -fx-border-color: #CBD5E1;" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="120.0">
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Income">
          <VBox.margin>
-            <Insets left="18.0" top="20.0"/>
+            <Insets left="18.0" top="20.0" />
          </VBox.margin>
          <font>
-            <Font size="16.0"/>
+            <Font size="16.0" />
          </font>
       </Text>
       <Label fx:id="incomeBalance" text="+ $1,500.78" textFill="#3eab1a">
          <VBox.margin>
-            <Insets left="17.0" top="10.0"/>
+            <Insets left="17.0" top="10.0" />
          </VBox.margin>
          <font>
-            <Font size="18.0"/>
+            <Font size="18.0" />
          </font>
       </Label>
       <Line endX="170.0">
          <VBox.margin>
-            <Insets left="20.0" top="10.0"/>
+            <Insets left="20.0" top="10.0" />
          </VBox.margin>
       </Line>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expenses">
          <VBox.margin>
-            <Insets bottom="10.0" left="18.0" top="10.0"/>
+            <Insets bottom="10.0" left="18.0" top="10.0" />
          </VBox.margin>
          <font>
-            <Font size="16.0"/>
+            <Font size="16.0" />
          </font>
       </Text>
       <Label fx:id="expensesBalance" text="- $100.78" textFill="#f54b4b">
          <font>
-            <Font size="18.0"/>
+            <Font size="18.0" />
          </font>
          <VBox.margin>
-            <Insets left="17.0"/>
+            <Insets left="17.0" />
          </VBox.margin>
       </Label>
    </VBox>
-   <Text layoutX="25.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Latest Transactions"
-         AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="340.0">
+   <Text layoutX="25.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Latest Transactions" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="340.0">
       <font>
-         <Font name="Calibri Bold" size="18.0"/>
+         <Font name="Calibri Bold" size="18.0" />
       </font>
    </Text>
-   <Text layoutX="758.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make Payments and Deposits"
-         AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="340.0">
+   <Text layoutX="758.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make Payments and Deposits" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="340.0">
       <font>
-         <Font name="Calibri Bold" size="15.0"/>
+         <Font name="Calibri Bold" size="15.0" />
       </font>
    </Text>
-   <ListView fx:id="transactionList" layoutX="58.0" layoutY="395.0" opacity="0.0" prefHeight="365.0" prefWidth="570.0"
-             style="-fx-border-color: #E2E8F0;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="20.0"/>
-   <VBox alignment="CENTER" fillWidth="false" layoutX="659.0" layoutY="428.0" prefHeight="366.0" prefWidth="240.0"
-         style="-fx-background-color: #F5F7F8; -fx-background-radius: 20; -fx-border-color: #CBD5E1; -fx-border-radius: 20;"
-         AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+   <ListView fx:id="transactionList" layoutX="58.0" layoutY="395.0" opacity="0.0" prefHeight="365.0" prefWidth="570.0" style="-fx-border-color: #E2E8F0;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="20.0" />
+   <VBox alignment="CENTER" fillWidth="false" layoutX="659.0" layoutY="428.0" prefHeight="366.0" prefWidth="240.0" style="-fx-background-color: #F5F7F8; -fx-background-radius: 20; -fx-border-color: #CBD5E1; -fx-border-radius: 20;" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
       <Label text="Vendor:" textFill="#475569">
          <padding>
-            <Insets left="10.0" top="15.0"/>
+            <Insets left="10.0" top="15.0" />
          </padding>
          <font>
-            <Font size="15.0"/>
+            <Font size="15.0" />
          </font>
          <VBox.margin>
-            <Insets right="153.0"/>
+            <Insets right="153.0" />
          </VBox.margin>
       </Label>
-      <TextField fx:id="vendorTextField" alignment="TOP_LEFT" opacity="0.5" prefHeight="35.0" prefWidth="205.0"
-                 style="-fx-border-color: #E2E8F0;"/>
+      <TextField fx:id="vendorTextField" alignment="TOP_LEFT" opacity="0.5" prefHeight="35.0" prefWidth="205.0" style="-fx-border-color: #E2E8F0;" />
       <Label text="Description" textFill="#475569">
          <padding>
-            <Insets left="10.0" top="10.0"/>
+            <Insets left="10.0" top="10.0" />
          </padding>
          <font>
-            <Font size="15.0"/>
+            <Font size="15.0" />
          </font>
          <VBox.margin>
-            <Insets right="135.0"/>
+            <Insets right="135.0" />
          </VBox.margin>
       </Label>
-      <TextField fx:id="descTextField" alignment="TOP_LEFT" opacity="0.5" prefHeight="35.0" prefWidth="205.0"
-                 style="-fx-border-color: #E2E8F0;"/>
+      <TextField fx:id="descTextField" alignment="TOP_LEFT" opacity="0.5" prefHeight="35.0" prefWidth="205.0" style="-fx-border-color: #E2E8F0;" />
       <Label text="Amount: $" textFill="#475569">
          <padding>
-            <Insets left="10.0" top="10.0"/>
+            <Insets left="10.0" top="10.0" />
          </padding>
          <font>
-            <Font size="15.0"/>
+            <Font size="15.0" />
          </font>
          <VBox.margin>
-            <Insets right="135.0"/>
+            <Insets right="135.0" />
          </VBox.margin>
       </Label>
-      <TextArea fx:id="amountTextArea" opacity="0.5" prefHeight="89.0" prefWidth="205.0"
-                style="-fx-border-color: #E2E8F0;"/>
-      <Button fx:id="confirmTransButton" alignment="CENTER" mnemonicParsing="false" prefHeight="41.0"
-              prefWidth="210.0"
-              style="-fx-background-radius: 15; -fx-background-color: #C0392B; -fx-border-color: #CBD5E1; -fx-border-radius: 15;"
-              text="Confirm" textFill="WHITE">
+      <TextArea fx:id="amountTextArea" opacity="0.5" prefHeight="89.0" prefWidth="205.0" style="-fx-border-color: #E2E8F0;" />
+      <Label fx:id="confirmTextLabel" alignment="CENTER" prefHeight="31.0" prefWidth="207.0" textFill="#0f6e56">
+         <padding>
+            <Insets left="10.0" top="10.0" />
+         </padding>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="confirmTransButton" alignment="CENTER" mnemonicParsing="false" prefHeight="41.0" prefWidth="210.0" style="-fx-background-radius: 15; -fx-background-color: #C0392B; -fx-border-color: #CBD5E1; -fx-border-radius: 15;" text="Confirm" textFill="WHITE">
          <VBox.margin>
-            <Insets left="10.0" top="30.0"/>
+            <Insets left="10.0" top="10.0" />
          </VBox.margin>
          <font>
-            <Font size="15.0"/>
+            <Font size="15.0" />
          </font>
       </Button>
    </VBox>
