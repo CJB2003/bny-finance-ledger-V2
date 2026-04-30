@@ -17,14 +17,14 @@ public class BnyLedgerApp {
         while (appRunning) {
             //Welcomes the user to the account ledger experience at BNY Financial Corp.
             System.out.println(
-            formatter.bold("""
-            ====================================
-            || Welcome to BNY Financial Corp. ||
-            ====================================
-            """));
+                    formatter.bold("""
+                            ====================================
+                            || Welcome to BNY Financial Corp. ||
+                            ====================================
+                            """));
             Thread.sleep(1000);
             System.out.println(
-                            """
+                    """
                             D) Make Deposit
                             P) Make Payment (Debit)
                             L) Go to ledger
@@ -107,6 +107,7 @@ public class BnyLedgerApp {
         FileManager.writeToFile(payment);
         System.out.println("Your payment was successful!");
     }
+
     //Created method for array list loading and formatting for reusability
     public static ArrayList<Transactions> all() {
         //reads/loads the transactions from file manager class into the array list
@@ -115,7 +116,7 @@ public class BnyLedgerApp {
         In order to get newest to oldest, I need to reverse the order of transactions
         in the array. Changed to where it's based on the date of the transaction
         */
-        all.sort(Comparator.comparing(Transactions::getDate).reversed());
+        all.sort(Comparator.comparing(Transactions::getDate).thenComparing(Transactions::getTime).reversed());
 
         return all;
     }
@@ -125,22 +126,22 @@ public class BnyLedgerApp {
         //similar to the home menu, just with different options
         boolean ledgerOpen = true;
 
-        while(ledgerOpen) {
+        while (ledgerOpen) {
             System.out.println(formatter.bold(
-            """
-            ================
-            || Bny Ledger ||
-            ================
-            """));
+                    """
+                            ================
+                            || Bny Ledger ||
+                            ================
+                            """));
             Thread.sleep(1000);
             System.out.println(
                     """
-                    A) All
-                    D) Deposits
-                    P) Payments
-                    R) Reports
-                    H) Home
-                    """
+                            A) All
+                            D) Deposits
+                            P) Payments
+                            R) Reports
+                            H) Home
+                            """
             );
             Thread.sleep(1000);
             System.out.println("Select one of the options above.\n");
@@ -148,7 +149,7 @@ public class BnyLedgerApp {
             String command = myScanner.nextLine().toUpperCase();
             System.out.println();
 
-            switch(command) {
+            switch (command) {
                 case "A":
                     displayAll(all());
                     break;
@@ -169,6 +170,7 @@ public class BnyLedgerApp {
             }
         }
     }
+
     //Displays all transactions
     public static void displayAll(ArrayList<Transactions> list) {
         //adding formatted header
@@ -179,6 +181,7 @@ public class BnyLedgerApp {
             System.out.printf("%s | %s | %s | %s | %s\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), formatter.colorForAmount(t.getAmount()));
         }
     }
+
     //Displays all deposits
     public static void displayDeposits(ArrayList<Transactions> list) {
         System.out.printf("%s | %s | %s | %s | %s\n", "Date", "Time", "Description", "Vendor", "Amount");
@@ -195,6 +198,7 @@ public class BnyLedgerApp {
         }
 
     }
+
     //Displays all payments, opposite of deposits
     public static void displayPayments(ArrayList<Transactions> list) {
         System.out.printf("%s | %s | %s | %s | %s\n", "Date", "Time", "Description", "Vendor", "Amount");
@@ -211,6 +215,7 @@ public class BnyLedgerApp {
         }
 
     }
+
     //Reports menu
     public static void reports() throws InterruptedException {
 
@@ -218,7 +223,7 @@ public class BnyLedgerApp {
         boolean reportOpen = true;
 
         //Another while loop for a menu...
-        while(reportOpen) {
+        while (reportOpen) {
             System.out.println(formatter.bold("""
                     ===========================
                     || BNY Financial Reports ||
@@ -239,7 +244,7 @@ public class BnyLedgerApp {
             myScanner.nextLine();
 
             //Switch statement for choice
-            switch(choice) {
+            switch (choice) {
                 case 0:
                     reportOpen = false;
                     break;
@@ -265,6 +270,7 @@ public class BnyLedgerApp {
         }
 
     }
+
     //Getting data from the current month
     public static void monthToDate(ArrayList<Transactions> list) {
         /*
@@ -294,6 +300,7 @@ public class BnyLedgerApp {
         //reusing display method to format array list result
         displayAll(resultMonth);
     }
+
     //Getting data from the previous month
     public static void prevMonth(ArrayList<Transactions> list) {
         //Creating new array list
@@ -318,6 +325,7 @@ public class BnyLedgerApp {
         }
         displayAll(resultPrevMonth);
     }
+
     //Gets data from current year, same concept as monthToDate
     public static void yearToDate(ArrayList<Transactions> list) {
         ArrayList<Transactions> resultYear = new ArrayList<>();
@@ -333,6 +341,7 @@ public class BnyLedgerApp {
         }
         displayAll(resultYear);
     }
+
     //Gets the data from previous year
     public static void prevYear(ArrayList<Transactions> list) {
         ArrayList<Transactions> resultPrevYear = new ArrayList<>();
@@ -349,6 +358,7 @@ public class BnyLedgerApp {
         }
         displayAll(resultPrevYear);
     }
+
     public static void searchByVendor(ArrayList<Transactions> list) {
 
         ArrayList<Transactions> vendorResult = new ArrayList<>();
