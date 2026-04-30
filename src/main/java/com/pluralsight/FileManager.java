@@ -6,7 +6,7 @@ import java.util.*;
 
 public class FileManager {
     //creating a shortcut, so I don't have to type the pathname out everytime
-    static File file = new File("src/main/resources/transactions.csv");
+    static final File file = new File("src/main/resources/transactions.csv");
 
     //method for writing to file
     public static void writeToFile(Transactions transaction) {

@@ -1,6 +1,5 @@
 package launch;
 
-import controllers.LedgerController;
 import controllers.UserSideController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

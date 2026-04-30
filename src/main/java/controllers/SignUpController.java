@@ -104,15 +104,7 @@ public class SignUpController implements Initializable {
         Connection connectDB = connection.getConnection();
 
         //assigning the user input into string variables
-        String firstName = firstNameTextField.getText();
-        String lastName = lastNameTextField.getText();
-        String username = usernameTextField.getText();
-        String password = setPasswordField.getText();
-
-        //Query for SQL database, concatenating the 4 values together with the insertField string
-        String insertFields = "INSERT INTO user_account(firstname, lastname, username, password) VALUES ('";
-        String insertValues = firstName + "','" + lastName + "','" + username + "','" + password + "')";
-        String insertToSignUp = insertFields + insertValues;
+        String insertToSignUp = getString();
 
         try {
             //Writing the data to the database and executing the query
@@ -124,6 +116,19 @@ public class SignUpController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    private String getString() {
+        String firstName = firstNameTextField.getText();
+        String lastName = lastNameTextField.getText();
+        String username = usernameTextField.getText();
+        String password = setPasswordField.getText();
+
+        //Query for SQL database, concatenating the 4 values together with the insertField string
+        String insertFields = "INSERT INTO user_account(firstname, lastname, username, password) VALUES ('";
+        String insertValues = firstName + "','" + lastName + "','" + username + "','" + password + "')";
+        String insertToSignUp = insertFields + insertValues;
+        return insertToSignUp;
     }
 
 }

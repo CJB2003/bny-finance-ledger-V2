@@ -10,61 +10,63 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
-   <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <AnchorPane prefHeight="400.0" prefWidth="223.0">
-               <children>
-                  <ImageView fx:id="loginBrandImageView" fitHeight="400.0" fitWidth="252.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/Branding_Image.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="224.0" prefHeight="400.0" prefWidth="376.0" style="-fx-background-color: #8c8d8f;">
-               <children>
-                  <ImageView fx:id="lockImageView" fitHeight="72.0" fitWidth="129.0" layoutX="124.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../bny-financial-ledger/src/main/resources/com/pluralsight/bnyfinancialledger/lock_icon.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="73.0" layoutY="159.0" text="Username">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="userNameTextField" layoutX="138.0" layoutY="152.0" prefHeight="25.0" prefWidth="167.0" promptText="Username" />
-                  <Label layoutX="73.0" layoutY="203.0" text="Password">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <PasswordField fx:id="enterPasswordField" layoutX="138.0" layoutY="196.0" prefHeight="25.0" prefWidth="167.0" promptText="Password" />
-                  <Button fx:id="loginButton" layoutX="65.0" layoutY="267.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="37.0" prefWidth="246.0" style="-fx-background-color: #00243D; -fx-background-radius: 12;" text="Login" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="registerButton" layoutX="66.0" layoutY="319.0" mnemonicParsing="false" onAction="#onRegisterButtonClick" prefHeight="37.0" prefWidth="246.0" style="-fx-background-color: #00243D; -fx-background-radius: 12;" text="Create Account" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="exitButton" layoutX="304.0" layoutY="14.0" mnemonicParsing="false" onAction="#onExitButtonClick" prefHeight="37.0" prefWidth="58.0" style="-fx-background-color: #00243D; -fx-background-radius: 12;" text="Exit" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="70.0" layoutY="243.0" prefHeight="18.0" prefWidth="236.0">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-         </children>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+           prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="controllers.LoginController">
+   <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane prefHeight="400.0" prefWidth="223.0">
+         <ImageView fx:id="loginBrandImageView" fitHeight="400.0" fitWidth="252.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@../Images/Branding_Image.png"/>
+         </ImageView>
       </AnchorPane>
-   </children>
+      <AnchorPane layoutX="224.0" prefHeight="400.0" prefWidth="376.0" style="-fx-background-color: #8c8d8f;">
+         <ImageView fx:id="lockImageView" fitHeight="72.0" fitWidth="129.0" layoutX="124.0" layoutY="48.0"
+                    pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../../../../bny-financial-ledger/src/main/resources/com/pluralsight/bnyfinancialledger/lock_icon.png"/>
+         </ImageView>
+         <Label layoutX="73.0" layoutY="159.0" text="Username">
+            <font>
+               <Font name="System Bold" size="13.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="userNameTextField" layoutX="138.0" layoutY="152.0" prefHeight="25.0" prefWidth="167.0"
+                    promptText="Username"/>
+         <Label layoutX="73.0" layoutY="203.0" text="Password">
+            <font>
+               <Font name="System Bold" size="13.0"/>
+            </font>
+         </Label>
+         <PasswordField fx:id="enterPasswordField" layoutX="138.0" layoutY="196.0" prefHeight="25.0"
+                        prefWidth="167.0" promptText="Password"/>
+         <Button fx:id="loginButton" layoutX="65.0" layoutY="267.0" mnemonicParsing="false"
+                 onAction="#loginButtonOnAction" prefHeight="37.0" prefWidth="246.0"
+                 style="-fx-background-color: #00243D; -fx-background-radius: 12;" text="Login" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="13.0"/>
+            </font>
+         </Button>
+         <Button fx:id="registerButton" layoutX="66.0" layoutY="319.0" mnemonicParsing="false"
+                 onAction="#onRegisterButtonClick" prefHeight="37.0" prefWidth="246.0"
+                 style="-fx-background-color: #00243D; -fx-background-radius: 12;" text="Create Account"
+                 textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="13.0"/>
+            </font>
+         </Button>
+         <Button fx:id="exitButton" layoutX="304.0" layoutY="14.0" mnemonicParsing="false"
+                 onAction="#onExitButtonClick" prefHeight="37.0" prefWidth="58.0"
+                 style="-fx-background-color: #00243D; -fx-background-radius: 12;" text="Exit" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="13.0"/>
+            </font>
+         </Button>
+         <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="70.0" layoutY="243.0" prefHeight="18.0"
+                prefWidth="236.0">
+            <font>
+               <Font size="13.0"/>
+            </font>
+         </Label>
+      </AnchorPane>
+   </AnchorPane>
 </StackPane>

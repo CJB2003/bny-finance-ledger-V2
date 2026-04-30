@@ -66,7 +66,7 @@ public class LoginController implements Initializable {
     Makes sure that username and password aren't empty
      */
     public void loginButtonOnAction(ActionEvent event) {
-        if (userNameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false) {
+        if (!userNameTextField.getText().isBlank() && !enterPasswordField.getText().isBlank()) {
             validateLogin();
         } else {
             loginMessageLabel.setTextFill(Color.RED);

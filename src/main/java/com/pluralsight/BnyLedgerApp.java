@@ -5,19 +5,15 @@ import java.time.LocalTime;
 import java.util.*;
 
 public class BnyLedgerApp {
-    static Scanner myScanner = new Scanner(System.in);
-    static TextFormatter formatter = new TextFormatter();
+    static final Scanner myScanner = new Scanner(System.in);
 
     public static void main(String[] args) throws InterruptedException {
 
-        //boolean variable set to true
-        boolean appRunning = true;
-
         //while loop for the menu with multiple options
-        while (appRunning) {
+        while (true) {
             //Welcomes the user to the account ledger experience at BNY Financial Corp.
             System.out.println(
-                    formatter.bold("""
+                    TextFormatter.bold("""
                             ====================================
                             || Welcome to BNY Financial Corp. ||
                             ====================================
@@ -62,50 +58,56 @@ public class BnyLedgerApp {
 
     //method for making a deposit
     public static void makeDeposit() {
+        try {
+            //prompting user to enter values
+            System.out.println("\nYou have selected to deposit.");
+            System.out.print("Please enter a description: ");
+            String userDesc = myScanner.nextLine();
+            System.out.print("Please enter the vendor name: ");
+            String userVendor = myScanner.nextLine();
+            System.out.print("Please enter the amount: ");
+            double userAmount = myScanner.nextDouble();
 
-        //prompting user to enter values
-        System.out.println("\nYou have selected to deposit.");
-        System.out.print("Please enter a description: ");
-        String userDesc = myScanner.nextLine();
-        System.out.print("Please enter the vendor name: ");
-        String userVendor = myScanner.nextLine();
-        System.out.print("Please enter the amount: ");
-        double userAmount = myScanner.nextDouble();
-        myScanner.nextLine();
+            //this ensures all deposits are greater than zero
+            if (userAmount <= 0) {
+                System.out.println("Error: The deposit amount is less than zero!");
+            } else {
+                //create new object for deposits and saving to
+                Transactions deposit = new Transactions(LocalDate.now(), LocalTime.now(), userDesc, userVendor, userAmount);
 
-        //this ensures all deposits are greater than zero
-        if (userAmount <= 0) {
-            System.out.println("Error: The deposit amount is less than zero!");
-        } else {
-            //create new object for deposits and saving to
-            Transactions deposit = new Transactions(LocalDate.now(), LocalTime.now(), userDesc, userVendor, userAmount);
-
-            //deposit information gets written to transaction.csv
-            FileManager.writeToFile(deposit);
-            System.out.println("Your deposit was successful.");
+                //deposit information gets written to transaction.csv
+                FileManager.writeToFile(deposit);
+                System.out.println("Your deposit was successful.");
+            }
+        } catch(Exception e) {
+            myScanner.nextLine();
         }
     }
-
     //method for making a payment
     public static void makePayment() {
-        //similar to the makeDeposit method, prompts user
-        System.out.println("\nYou have selected to make a payment.");
-        System.out.print("Please enter a description: ");
-        String userDesc = myScanner.nextLine();
-        System.out.print("Please enter the vendor name: ");
-        String userVendor = myScanner.nextLine();
-        System.out.print("Please enter the amount: ");
-        double userAmount = myScanner.nextDouble();
-        myScanner.nextLine();
 
-        //if the amount the user enters is positive, it forces the input to be negative
-        if (userAmount > 0) {
-            userAmount *= -1;
+        try {
+            //similar to the makeDeposit method, prompts user
+            System.out.println("\nYou have selected to make a payment.");
+            System.out.print("Please enter a description: ");
+            String userDesc = myScanner.nextLine();
+            System.out.print("Please enter the vendor name: ");
+            String userVendor = myScanner.nextLine();
+            System.out.print("Please enter the amount: ");
+            double userAmount = myScanner.nextDouble();
+            myScanner.nextLine();
+
+            //if the amount the user enters is positive, it forces the input to be negative
+            if (userAmount > 0) {
+                userAmount *= -1;
+            }
+            //writes values of object payment to the transactions.csv file
+            Transactions payment = new Transactions(LocalDate.now(), LocalTime.now(), userDesc, userVendor, userAmount);
+            FileManager.writeToFile(payment);
+            System.out.println("Your payment was successful!");
+        } catch(Exception e) {
+            myScanner.nextLine();
         }
-        //writes values of object payment to the transactions.csv file
-        Transactions payment = new Transactions(LocalDate.now(), LocalTime.now(), userDesc, userVendor, userAmount);
-        FileManager.writeToFile(payment);
-        System.out.println("Your payment was successful!");
     }
 
     //Created method for array list loading and formatting for reusability
@@ -127,7 +129,7 @@ public class BnyLedgerApp {
         boolean ledgerOpen = true;
 
         while (ledgerOpen) {
-            System.out.println(formatter.bold(
+            System.out.println(TextFormatter.bold(
                     """
                             ================
                             || Bny Ledger ||
@@ -178,7 +180,7 @@ public class BnyLedgerApp {
 
         //For-each loop that prints out in a formatted way
         for (Transactions t : list) {
-            System.out.printf("%s | %s | %s | %s | %s\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), formatter.colorForAmount(t.getAmount()));
+            System.out.printf("%s | %s | %s | %s | %s\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), TextFormatter.colorForAmount(t.getAmount()));
         }
     }
 
@@ -193,7 +195,7 @@ public class BnyLedgerApp {
             Greater than 0 = deposits
             */
             if (t.getAmount() > 0) {
-                System.out.printf("%s | %s | %s | %s | %s\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), formatter.colorForAmount(t.getAmount()));
+                System.out.printf("%s | %s | %s | %s | %s\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), TextFormatter.colorForAmount(t.getAmount()));
             }
         }
 
@@ -210,21 +212,21 @@ public class BnyLedgerApp {
             Less than 0 is a payment
             */
             if (t.getAmount() < 0) {
-                System.out.printf("%s | %s | %s | %s | %s\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), formatter.colorForAmount(t.getAmount()));
+                System.out.printf("%s | %s | %s | %s | %s\n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), TextFormatter.colorForAmount(t.getAmount()));
             }
         }
 
     }
 
     //Reports menu
-    public static void reports() throws InterruptedException {
+    public static void reports() {
 
 
         boolean reportOpen = true;
 
         //Another while loop for a menu...
         while (reportOpen) {
-            System.out.println(formatter.bold("""
+            System.out.println(TextFormatter.bold("""
                     ===========================
                     || BNY Financial Reports ||
                     ===========================
@@ -372,7 +374,8 @@ public class BnyLedgerApp {
         add it to the array list
         */
         for (Transactions vendor : list) {
-            if (vendor.getVendor().equalsIgnoreCase(userVendor)) {
+            //Made it to where the user can search for a part of the vendor name without having to fully type it out
+            if (vendor.getVendor().toLowerCase().contains(userVendor.toLowerCase())) {
                 vendorResult.add(vendor);
             }
         }
