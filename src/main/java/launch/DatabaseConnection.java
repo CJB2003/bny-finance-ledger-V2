@@ -6,7 +6,6 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class DatabaseConnection {
 
@@ -67,13 +66,16 @@ public class DatabaseConnection {
     public ArrayList<Transactions> getTransactionsFromDB() {
 
         ArrayList<Transactions> getT = new ArrayList<>();
+        //This is the script used to execute in SQL
         String query = "SELECT date, time, description, vendor, amount FROM transactions ORDER BY date DESC, time DESC";
 
         try {
+            //Connects to SQL database and executes query
             Connection connect = getConnection();
             Statement statement = connect.createStatement();
             ResultSet result = statement.executeQuery(query);
 
+            //Reading the rows of the database converting back to java
             while (result.next()) {
                 LocalDate date = result.getDate("Date").toLocalDate();
                 LocalTime time = result.getTime("Time").toLocalTime();
@@ -81,6 +83,7 @@ public class DatabaseConnection {
                 String vendor = result.getString("Vendor");
                 double amount = result.getDouble("Amount");
 
+                //Adding to the new list
                 getT.add(new Transactions(date, time, desc, vendor, amount));
             }
 

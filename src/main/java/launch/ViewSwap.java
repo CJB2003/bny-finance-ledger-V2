@@ -64,6 +64,7 @@ public class ViewSwap {
         return transactionsView;
     }
 
+    //Loads up the ledger view
     public AnchorPane getLedgerView() {
         if (ledgerView == null) {
             try {
@@ -74,6 +75,7 @@ public class ViewSwap {
                 e.printStackTrace();
             }
         }
+        return ledgerView;
     }
 
     //shows the login view
