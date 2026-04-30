@@ -6,10 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import launch.DatabaseConnection;
 
 import java.net.URL;
@@ -54,14 +51,37 @@ public class LedgerController implements Initializable {
     //Setting up columns for the table
     private void setColumns() {
 
-        //Tells what values are being displayed in each column
+        /*
+        Tells what values are being displayed in each column, converts time and date to strings.
+        The SimpleStringProperty basically allows javafx read and render the data onto the columns
+         */
         dateColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDate().toString()));
         timeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTime().toString()));
         descColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDescription()));
         vendorColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getVendor()));
         amountColumn.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getAmount()));
+    }
 
+    private TableCell<Transactions, Double> colorAmountCell() {
+        //creating new table cell class
+        return new TableCell<>() {
+            @Override
+            protected void updateItem(Double amount, boolean empty) {
+                //Ensures no bugs, calls parent class of updateItem
+                super.updateItem(amount, empty);
 
+                //checks if cell is empty and will set text to null displaying nothing
+                if (empty || amount == null) {
+                    setText(null);
+                    //Sets text to green or red depending on whether the amount if positive or negative
+                    if (amount > 0) {
+                        setStyle("-fx-text-fill: #0F6E56; -fx-font-weight: bold;");
+                    } else {
+                        setStyle("-fx-text-fill: #993C1D; -fx-font-weight: bold;");
+                    }
+                }
+            }
+        };
     }
 
     //Connects to the SQL database and gets data from transaction table
