@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.scene.layout.AnchorPane;
 import launch.Model;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
@@ -17,8 +18,11 @@ public class UserSideController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Model.getInstance().getViewSwap().getUserSelectedMenuItem().addListener((observableValue, oldValue, newValue) -> {
 
+        //Set dashboard here instead of in client-side, was clashing with my table in ledger
+        userParent.setCenter(Model.getInstance().getViewSwap().getDashboardView());
+
+        Model.getInstance().getViewSwap().getUserSelectedMenuItem().addListener((observableValue, oldValue, newValue) -> {
             /*
             Switch statement, checks what new value is selected, it will swap the that new view
             Otherwise, it will set the dashboard as the view by default

@@ -7,8 +7,4 @@
         <fx:include source="bny-app-menu.fxml"/>
     </left>
 
-    <center>
-        <fx:include source="bny-app-dashboard.fxml"/>
-    </center>
-
 </BorderPane>

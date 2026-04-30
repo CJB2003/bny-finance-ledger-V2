@@ -1,6 +1,7 @@
 package controllers;
 
 import com.pluralsight.Transactions;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -45,6 +46,7 @@ public class LedgerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setColumns();
         loadTable();
     }
 
@@ -85,10 +87,20 @@ public class LedgerController implements Initializable {
     }
 
     //Connects to the SQL database and gets data from transaction table
-    private void loadTable() {
+    public void loadTable() {
         DatabaseConnection db = new DatabaseConnection();
         allT = db.getTransactionsFromDB();
+
+        //Checking if transactions actually loaded up, if 0, means none loaded
+        System.out.println("Transactions loaded: " + allT.size());
+
         transactionTable.getItems().setAll(allT);
+
+        //waits until scene is fully rendered
+        Platform.runLater(() -> {
+            System.out.println("Table width: " + transactionTable.getWidth());
+            System.out.println("Table height: " + transactionTable.getHeight());
+        });
     }
 
     //When all button is pressed, it shows all the data in table

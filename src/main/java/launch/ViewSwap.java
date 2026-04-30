@@ -1,5 +1,6 @@
 package launch;
 
+import controllers.LedgerController;
 import controllers.UserSideController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -55,6 +56,7 @@ public class ViewSwap {
             try {
                 transactionsView = new FXMLLoader(getClass().getResource("/fxml/Transactions.fxml")).load();
 
+
             } catch(Exception e) {
                 System.out.println("Could not load transactions screen.");
                 e.printStackTrace();
@@ -68,8 +70,11 @@ public class ViewSwap {
     public AnchorPane getLedgerView() {
         if (ledgerView == null) {
             try {
-                ledgerView = new FXMLLoader(getClass().getResource("/fxml/bny-ledger.fxml")).load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/bny-ledger.fxml"));
+                ledgerView = loader.load();
 
+                LedgerController controller = loader.getController();
+                controller.loadTable();
             } catch(Exception e) {
                 System.out.println("Could not load ledger screen");
                 e.printStackTrace();
