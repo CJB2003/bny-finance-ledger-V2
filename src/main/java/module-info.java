@@ -6,7 +6,6 @@ module com.pluralsight {
     requires mysql.connector.j;
     requires java.desktop;
 
-
     opens com.pluralsight to javafx.fxml;
     exports com.pluralsight;
     exports controllers;

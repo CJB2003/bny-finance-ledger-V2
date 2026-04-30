@@ -142,6 +142,7 @@ public class DashboardController implements Initializable {
         db.saveToDataBase(newList);
         //Resets the ledger so the table gets updated after user saves info to the database
         Model.getInstance().getViewSwap().resetLedgerView();
+        refreshBalanceLabels();
 
         //After saving, clearing the text fields...
         vendorTextField.clear();

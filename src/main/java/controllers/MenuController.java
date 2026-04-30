@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.stage.Stage;
 import launch.Model;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,6 +30,7 @@ public class MenuController implements Initializable {
         dashboardButton.setOnAction(event -> onDashboard());
         transactionsButton.setOnAction(event -> onTransactions());
         ledgerButton.setOnAction(event -> onLedger());
+        logoutButton.setOnAction(event -> onLogout());
     }
 
     private void onDashboard() {
@@ -39,6 +41,11 @@ public class MenuController implements Initializable {
     }
     private void onLedger() {
         Model.getInstance().getViewSwap().getUserSelectedMenuItem().set("Ledger");
+    }
+    private void onLogout() {
+        Stage currentStage = (Stage) logoutButton.getScene().getWindow();
+        currentStage.close();
+        Model.getInstance().getViewSwap().showLoginView();
     }
 }
 

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<AnchorPane prefHeight="750" prefWidth="850" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LedgerController">
+<AnchorPane prefHeight="750" prefWidth="850" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LedgerController">
     <HBox alignment="CENTER_LEFT" prefHeight="50" style="-fx-background-color: #f4f4f4; -fx-padding: 14 20 14 20; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1a2b4a;" text="BNY Ledger" />
         <Region HBox.hgrow="ALWAYS" />
