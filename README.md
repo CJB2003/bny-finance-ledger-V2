@@ -2,29 +2,29 @@
 A financial transaction tracking application built in Java. Started as a CLI application and expanded into a full JavaFX desktop app with MySQL database integration.
 
 ## 🚀 Features
-CLI Application
+**CLI Application**
 
-- **Add deposits and payments that save to a transactions.csv file
-- **View a ledger with all transactions, deposits only, or payments only
-- **Run pre-defined reports:
-  - **Month to Date
-  - **Previous Month
-  - **Year to Date
-  - **Previous Year
-  - **Search by Vendor (partial name matching, case-insensitive)
+- Add deposits and payments that save to a transactions.csv file
+- View a ledger with all transactions, deposits only, or payments only
+- Run pre-defined reports:
+  - Month to Date
+  - Previous Month
+  - Year to Date
+  - Previous Year
+  - Search by Vendor (partial name matching, case-insensitive)
 
 
 
-JavaFX Desktop Application
+**JavaFX Desktop Application**
 
-- **Login and Sign Up screens with MySQL authentication
-- **Dashboard showing:
-  - **Live account balance, income, and expenses pulled from the database
-  - **Deposit and payment submission form that automatically timestamps transactions
-  - **Instant balance refresh after every transaction
-- **Ledger screen with a full transaction table, filterable by All, Deposits, or Payments
-- **Smooth navigation between Dashboard, Transactions, and Ledger screens
-- **Logout functionality that returns to the login screen
+- Login and Sign Up screens with MySQL authentication
+- Dashboard showing:
+  - Live account balance, income, and expenses pulled from the database
+  - Deposit and payment submission form that automatically timestamps transactions
+  - Instant balance refresh after every transaction
+- Ledger screen with a full transaction table, filterable by All, Deposits, or Payments
+- Smooth navigation between Dashboard, Transactions, and Ledger screens
+- Logout functionality that returns to the login screen
 
 ## 🛠️ Tech Stack
 - **Backend**: Java
