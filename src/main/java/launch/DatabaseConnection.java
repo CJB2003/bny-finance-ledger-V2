@@ -1,5 +1,6 @@
 package launch;
 
+import com.pluralsight.FileManager;
 import com.pluralsight.Transactions;
 
 import java.sql.*;
@@ -91,5 +92,26 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
         return getT;
+    }
+    //Creating method that syncs the csv file to db
+    public void syncCsvToDatabase() {
+
+        try {
+            Connection connect = getConnection();
+
+            //Clears the transactions table in database first
+            Statement stmt = connect.createStatement();
+            stmt.executeUpdate("DELETE FROM transactions");
+
+            //Then loads the csv file to database with saveToDataBase method
+            ArrayList<Transactions> list = FileManager.loadTransactions();
+            saveToDataBase(list);
+
+            System.out.println("CSV synced to database!");
+
+        } catch (Exception e) {
+            System.out.println("Sync failed.");
+            e.printStackTrace();
+        }
     }
 }

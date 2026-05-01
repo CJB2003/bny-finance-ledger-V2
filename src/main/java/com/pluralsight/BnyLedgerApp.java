@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import launch.DatabaseConnection;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -24,6 +26,7 @@ public class BnyLedgerApp {
                             D) Make Deposit
                             P) Make Payment (Debit)
                             L) Go to ledger
+                            S) Sync csv to database
                             X) Exit
                             """
             );
@@ -46,6 +49,10 @@ public class BnyLedgerApp {
                     break;
                 case "L":
                     ledger();
+                    break;
+                case "S":
+                    DatabaseConnection db = new DatabaseConnection();
+                    db.syncCsvToDatabase();
                     break;
                 case "X":
                     System.exit(0);
