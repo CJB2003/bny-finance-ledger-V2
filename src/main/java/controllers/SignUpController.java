@@ -56,12 +56,27 @@ public class SignUpController implements Initializable {
 
         } catch(Exception e) {
             System.out.println("Could not load image.");
-            e.printStackTrace();
         }
     }
     //Sign up button method
     public void signUpButtonOnAction(ActionEvent event) {
 
+        //Initializing variables to store user input for all fields
+        String firstName = firstNameTextField.getText().trim();
+        String lastName = lastNameTextField.getText().trim();
+        String username = usernameTextField.getText().trim();
+        String password = setPasswordField.getText().trim();
+        String confirmPassword = confirmPasswordField.getText().trim();
+
+        //If any of the credentials are blank, it will prompt the user to enter the fields
+        if (firstName.isBlank() || lastName.isBlank() || username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
+
+            confirmPasswordLabel.setTextFill(Color.RED);
+            confirmPasswordLabel.setText("All fields required!");
+            return;
+        }
+
+        //Checks if passwords match
         if (setPasswordField.getText().equals(confirmPasswordField.getText())) {
             userSignUp();
             //Clears the text inside the password message label
@@ -71,7 +86,6 @@ public class SignUpController implements Initializable {
             confirmPasswordLabel.setTextFill(Color.RED);
             confirmPasswordLabel.setText("Password does not match!");
         }
-
     }
 
     //Method for back button, reopens the login screen
@@ -93,7 +107,6 @@ public class SignUpController implements Initializable {
 
         } catch(Exception e) {
             System.out.println("Could not go back to login screen.");
-            e.printStackTrace();
         }
     }
 
@@ -113,9 +126,8 @@ public class SignUpController implements Initializable {
             signUpLabel.setText("User Sign Up Successful!");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("User Sign Up failed.");
         }
-
     }
 
     private String getString() {
@@ -127,10 +139,8 @@ public class SignUpController implements Initializable {
         //Query for SQL database, concatenating the 4 values together with the insertField string
         String insertFields = "INSERT INTO user_account(firstname, lastname, username, password) VALUES ('";
         String insertValues = firstName + "','" + lastName + "','" + username + "','" + password + "')";
-        String insertToSignUp = insertFields + insertValues;
-        return insertToSignUp;
+        return insertFields + insertValues;
     }
-
 }
 
 

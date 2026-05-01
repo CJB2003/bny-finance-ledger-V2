@@ -21,7 +21,6 @@ public class DatabaseConnection {
         String url = "jdbc:mysql://192.168.1.122:3306/" + databaseName;
 
         try {
-
             //this is what actually translates Java for SQL
             Class.forName("com.mysql.cj.jdbc.Driver");
             databaselink = DriverManager.getConnection(url, databaseUser, databasePassword);
