@@ -36,9 +36,6 @@ public class UserSideController implements Initializable {
                 default:
                     userParent.setCenter(Model.getInstance().getViewSwap().getDashboardView());
             }
-
         });
-
     }
-
 }

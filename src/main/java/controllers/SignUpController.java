@@ -71,8 +71,8 @@ public class SignUpController implements Initializable {
         //If any of the credentials are blank, it will prompt the user to enter the fields
         if (firstName.isBlank() || lastName.isBlank() || username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
 
-            confirmPasswordLabel.setTextFill(Color.RED);
-            confirmPasswordLabel.setText("All fields required!");
+            signUpLabel.setTextFill(Color.RED);
+            signUpLabel.setText("All fields required!");
             return;
         }
 

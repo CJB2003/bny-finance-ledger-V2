@@ -1,6 +1,6 @@
 package launch;
 
-
+//Singleton class
 public class Model {
     private static Model model;
     private final ViewSwap viewSwap;
