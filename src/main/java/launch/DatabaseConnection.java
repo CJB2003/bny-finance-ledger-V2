@@ -18,7 +18,7 @@ public class DatabaseConnection {
         String databaseName = "bnyfinancialcorp";
         String databaseUser = "root";
         String databasePassword = "Chrisjb@2003";
-        String url = "jdbc:mysql://localhost:3306/" + databaseName;
+        String url = "jdbc:mysql://192.168.1.122:3306/" + databaseName;
 
         try {
 

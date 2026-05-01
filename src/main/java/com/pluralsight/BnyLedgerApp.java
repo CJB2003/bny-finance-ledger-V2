@@ -59,14 +59,17 @@ public class BnyLedgerApp {
     //method for making a deposit
     public static void makeDeposit() {
         try {
-            //prompting user to enter values
+            /*
+            Prompting user to enter values
+            Same problem I was facing in makePayment() method with the double
+             */
             System.out.println("\nYou have selected to deposit.");
             System.out.print("Please enter a description: ");
             String userDesc = myScanner.nextLine();
             System.out.print("Please enter the vendor name: ");
             String userVendor = myScanner.nextLine();
             System.out.print("Please enter the amount: ");
-            double userAmount = myScanner.nextDouble();
+            double userAmount = Double.parseDouble(myScanner.nextLine());
 
             //this ensures all deposits are greater than zero
             if (userAmount <= 0) {
@@ -77,25 +80,28 @@ public class BnyLedgerApp {
 
                 //deposit information gets written to transaction.csv
                 FileManager.writeToFile(deposit);
-                System.out.println("Your deposit was successful.");
+                System.out.println("Your deposit of $" + userAmount + " was successful!");
             }
         } catch(Exception e) {
-            myScanner.nextLine();
+            System.out.println("Deposit could not be processed. Try again.");
         }
     }
     //method for making a payment
     public static void makePayment() {
 
         try {
-            //similar to the makeDeposit method, prompts user
+            /*
+            Similar to the makeDeposit method, prompts user
+            My userAmount kept breaking when putting anything else other than a double
+            so why not convert the user string into a double instead
+             */
             System.out.println("\nYou have selected to make a payment.");
             System.out.print("Please enter a description: ");
             String userDesc = myScanner.nextLine();
             System.out.print("Please enter the vendor name: ");
             String userVendor = myScanner.nextLine();
             System.out.print("Please enter the amount: ");
-            double userAmount = myScanner.nextDouble();
-            myScanner.nextLine();
+            double userAmount = Double.parseDouble(myScanner.nextLine());
 
             //if the amount the user enters is positive, it forces the input to be negative
             if (userAmount > 0) {
@@ -104,9 +110,9 @@ public class BnyLedgerApp {
             //writes values of object payment to the transactions.csv file
             Transactions payment = new Transactions(LocalDate.now(), LocalTime.now(), userDesc, userVendor, userAmount);
             FileManager.writeToFile(payment);
-            System.out.println("Your payment was successful!");
+            System.out.println("Your payment of $" + userAmount + " was successful!");
         } catch(Exception e) {
-            myScanner.nextLine();
+            System.out.println("Payment could not be processed. Try again.");
         }
     }
 
@@ -175,6 +181,12 @@ public class BnyLedgerApp {
 
     //Displays all transactions
     public static void displayAll(ArrayList<Transactions> list) {
+        //Just checking to see if list is not empty
+        if (list.isEmpty()) {
+            System.out.println("Transaction in file not found.");
+            return;
+        }
+
         //adding formatted header
         System.out.printf("%s | %s | %s | %s | %s\n", "Date", "Time", "Description", "Vendor", "Amount");
 
@@ -186,6 +198,11 @@ public class BnyLedgerApp {
 
     //Displays all deposits
     public static void displayDeposits(ArrayList<Transactions> list) {
+        if (list.isEmpty()) {
+            System.out.println("Transaction in file not found.");
+            return;
+        }
+
         System.out.printf("%s | %s | %s | %s | %s\n", "Date", "Time", "Description", "Vendor", "Amount");
 
         //For-each loop
@@ -203,6 +220,10 @@ public class BnyLedgerApp {
 
     //Displays all payments, opposite of deposits
     public static void displayPayments(ArrayList<Transactions> list) {
+        if (list.isEmpty()) {
+            System.out.println("Transaction in file not found.");
+            return;
+        }
         System.out.printf("%s | %s | %s | %s | %s\n", "Date", "Time", "Description", "Vendor", "Amount");
 
         //For-each loop

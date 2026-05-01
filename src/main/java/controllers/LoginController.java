@@ -56,10 +56,11 @@ public class LoginController implements Initializable {
             Image lockImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/lock_icon.png")));
             lockImageView.setImage(lockImage);
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Could not load images.");
         }
     }
+
     /*
     Method for login screen that runs when login button is clicked
     Makes sure that username and password aren't empty
@@ -72,6 +73,7 @@ public class LoginController implements Initializable {
             loginMessageLabel.setText("Please enter a username and password");
         }
     }
+
     //method for validating logins
     public void validateLogin() {
 
@@ -102,7 +104,7 @@ public class LoginController implements Initializable {
             If queryResult count is greater than 1 than that user is in the database.
             Will also open a new scene, the dashboard
              */
-            while(queryResult.next()) {
+            while (queryResult.next()) {
                 if (queryResult.getInt(1) > 0) {
                     //clears the text inside the message label, move to here because it was clearing after EVERY login attempt
                     loginMessageLabel.setText("");
@@ -126,10 +128,11 @@ public class LoginController implements Initializable {
                 }
             }
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Could not validate login.");
         }
     }
+
     //method for exiting the application
     public void onExitButtonClick(ActionEvent event) {
 
@@ -138,6 +141,7 @@ public class LoginController implements Initializable {
         stage.close();
         Platform.exit();
     }
+
     //method for when user clicks on create account button
     public void onRegisterButtonClick() {
         accountCreationStage();
@@ -163,7 +167,7 @@ public class LoginController implements Initializable {
             //shows the sign-up screen
             signUpStage.show();
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Could not load sign up screen.");
         }
     }
