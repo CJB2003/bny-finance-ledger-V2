@@ -3,34 +3,40 @@ package launch;
 import com.pluralsight.FileManager;
 import com.pluralsight.Transactions;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class DatabaseConnection {
 
-    public Connection databaselink;
+    private static final Properties props = new Properties();
 
-    //Connection method that serves as a database connection for Java and MySQL
-    public Connection getConnection() {
-
-        //Credentials needed to log into MySQL server
-        String databaseName = "bnyfinancialcorp";
-        String databaseUser = "root";
-        String databasePassword = "Chrisjb@2003";
-        String url = "jdbc:mysql://192.168.1.122:3306/" + databaseName;
-
-        try {
-            //this is what actually translates Java for SQL
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            databaselink = DriverManager.getConnection(url, databaseUser, databasePassword);
-            System.out.println("Database connection successful!");
-        } catch(Exception e) {
-            e.printStackTrace();
+    /// A static initializer block; runs the try catch once
+    static {
+        /// Try with resources, reads from application.properties and checks if null
+        try (InputStream in = DatabaseConnection.class.getResourceAsStream("/application.properties")) {
+            if (in == null) {
+                throw new IOException(
+                        "application.properties not found. Copy application.properties.example and fill it in.");
+            }
+            props.load(in);
+        } catch (IOException e) {
+            throw new RuntimeException("Could not load database configuration", e);
         }
-        return databaselink;
     }
+
+    /// Hands back the strings of url, user, and password
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(
+                props.getProperty("db.url"),
+                props.getProperty("db.user"),
+                props.getProperty("db.password"));
+    }
+
     //Saves information from transactions.csv file to MySQL database
     public void saveToDataBase(ArrayList<Transactions> list) {
         String insert = "INSERT INTO transactions (date, time, description, vendor, amount) VALUES (?, ?, ?, ?, ?)";
