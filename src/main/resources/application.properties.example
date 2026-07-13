@@ -1,4 +1,5 @@
 # Make sure you're changing user and pass in environment variables so app runs properly
+
 db.url=jdbc:mysql://localhost:3306/bnyfinancialcorp
 db.user=${DB_USER}
 db.password=${DB_PASS}
